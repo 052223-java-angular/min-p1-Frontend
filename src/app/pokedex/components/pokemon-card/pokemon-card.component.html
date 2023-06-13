@@ -1,0 +1,49 @@
+<div class="h-64 bg-gray-800 flex justify-center flex-col items-center rounded-lg shadow-outline">
+    <div class="flex justify-between w-full">
+
+        <div class="text-center w-3/12 text-white">
+            {{Dex+1 | number:'3.0'}}
+        </div>
+
+        <div class="text-center w-1/2 text-white">
+            {{Pokemon}}
+        </div>
+
+        <div class="w-3/12 flex justify-center">
+            <button
+                (click)="shiny()"
+            >
+                <p *ngIf="Shiny; else normalStar" class="text-yellow-600"> star </p>
+                <ng-template #normalStar>
+                    <p class="text-white"> star </p>
+                </ng-template>
+                
+            </button>
+        </div>
+    </div>
+
+    <div
+        routerLink="/pokemon/{{Dex}}"
+        class="h-full w-full flex items-center justify-center"
+    >
+        <img
+            *ngIf="Shiny; else normalPokemon"
+            class="object-contain h-full transform hover:scale-110 w-auto cursor-pointer"
+            src="https://img.pokemondb.net/sprites/bank/shiny/{{Pokemon}}.png"
+            alt="bulbasaur sprite"
+        />
+        <ng-template #normalPokemon>
+            <img
+                class="object-contain h-full transform hover:scale-110 w-auto cursor-pointer"
+                src="https://img.pokemondb.net/sprites/bank/normal/{{Pokemon}}.png"
+                alt="bulbasaur sprite"
+            />
+        </ng-template>
+        
+    </div>
+
+    <div>
+        types
+    </div>
+</div>
+

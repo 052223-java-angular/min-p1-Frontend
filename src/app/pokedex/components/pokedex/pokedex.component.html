@@ -1,0 +1,5 @@
+<div class="grid grid-cols-5 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 xs:grid-cols-1 gap-4 bg-black p-1"  >
+    <div *ngFor="let pokemon of pokemonList.results;let dexNum=index;">
+        <app-pokemon-card [Pokemon]="pokemon.name" [Dex]="dexNum"></app-pokemon-card>
+    </div>
+</div>
