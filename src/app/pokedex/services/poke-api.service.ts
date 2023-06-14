@@ -10,8 +10,16 @@ export class PokeAPIService {
   baseurl = "https://pokeapi.co/api/v2/";
   constructor(private http: HttpClient) { }
 
+
   getPokemonSpecies(){
     return this.http.get(`${this.baseurl}pokemon-species/?limit=1020`)
   }
 
+  getPokemonByDex(dex:number){
+    return this.http.get(`${this.baseurl}pokemon/${dex}`)
+  }
+  
+  getPokemonSpeciesByDex(dex:number){
+    return this.http.get(`${this.baseurl}pokemon-species/${dex}`)
+  }
 }
