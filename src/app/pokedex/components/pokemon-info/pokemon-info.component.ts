@@ -22,31 +22,50 @@ export class PokemonInfoComponent {
   }
 
   getPokemonSpecie(dex : string): void {
-    this.pokeAPIservice.getPokemonSpeciesByDex(dex).subscribe(data => this.pokemonSpecie = data);
+    this.pokeAPIservice.getPokemonSpeciesByDex(dex).subscribe(data => {
+      this.pokemonSpecie = data
+      this.getEvolutionChain(this.pokemonSpecie.evolution_chain.url);
+    });
   }
 
   getEvolutionChain(url : string): void {
-    this.pokeAPIservice.getEvolutionChain(url).subscribe(data => this.evolutionChain = data);
+    this.pokeAPIservice.getEvolutionChain(url).subscribe(data =>{
+      this.evolutionChain = data;
+      this.getEvolutionFamily(this.evolutionChain.url);
+    });
   }
 
   getEvolutionFamily(url : string): void {
-    this.evolutionFamily.push(this.evolutionChain.chain.species.name);
+    this.evolutionFamily.push(
+      parseInt(
+        this.evolutionChain.chain.species.url.slice(
+          this.evolutionChain.chain.species.url.lastIndexOf(
+            "/",this.evolutionChain.chain.species.url.length - 2
+          ) + 1
+        )
+      )
+    );
 
     if (this.evolutionChain.chain.evolves_to.length > 0) {
       this.evolutionChain.chain.evolves_to.forEach(
-        (ele: { species: { name: string }; evolves_to: [] }) => {
-          this.evolutionFamily.push(ele.species.name);
+        (ele: { species: { 
+          url: string }; 
+          evolves_to: [] 
+        }) => {
+          this.evolutionFamily.push(parseInt(ele.species.url.slice(ele.species.url.lastIndexOf("/",ele.species.url.length - 2) + 1)));
           if (ele.evolves_to.length > 0) {
             ele.evolves_to.forEach(
               (ele: {
-                  species: { name: string };
+                  species: { url: string };
                   evolves_to: [];
               }) => {
-                this.evolutionFamily.push(ele.species.name);
+                this.evolutionFamily.push(parseInt(ele.species.url.slice(ele.species.url.lastIndexOf("/",ele.species.url.length - 2) + 1)));
                 if (ele.evolves_to.length > 0) {
                   ele.evolves_to.forEach(
-                    (ele: { species: { name: string } }) =>
-                        this.evolutionFamily.push(ele.species.name)
+                    (ele: { 
+                      species: { url: string } 
+                    }) =>
+                        this.evolutionFamily.push(parseInt(ele.species.url.slice(ele.species.url.lastIndexOf("/",ele.species.url.length - 2) + 1)))
                   );
                 }
               }
@@ -55,6 +74,8 @@ export class PokemonInfoComponent {
         }
       );
     }
+
+    console.log(this.evolutionFamily)
   }
 
 
@@ -64,9 +85,5 @@ export class PokemonInfoComponent {
     });
     this.getPokemon(this.dex);
     this.getPokemonSpecie(this.dex);
-    console.log(this.pokemon);
-    this.getEvolutionChain(this.pokemonSpecie.evolution_chain.url);
-
-    console.log("hi this is "+this.evolutionFamily);
   }
 }
