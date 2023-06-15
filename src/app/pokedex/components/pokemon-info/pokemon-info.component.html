@@ -1,1 +1,40 @@
-<p>pokemon-info works!</p>
+<div class="grid grid-rows-4 min-h-screen w-full">
+    <div class="grid grid-cols-2 row-span-2 h-full ">
+        <div class="w-full bg-slate-300">
+            <img src="{{pokemon.sprites.other['official-artwork'].front_default}}" alt="">
+        </div>
+        <div class="grid grid-rows-5 w-full">
+            
+            <div class="bg-slate-500 row-span-4">
+                infos
+            </div>
+            <div class="grid grid-cols-3 row-span-1">
+                <div class="w-full bg-slate-200">
+                    Shape
+                    {{pokemonSpecie.shape.name}}
+                </div>
+                <div class="w-full bg-slate-400">
+                    Height
+                    {{pokemon.height}}
+                </div>
+                <div class="w-full bg-slate-600">
+                    Weight
+                    {{pokemon.weight}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="h-full bg-slate-700 row-span-1">
+        <app-pokemon-card 
+            *ngFor="let pokemon of evolutionFamily"
+            [Pokemon]="pokemon" 
+        >
+        </app-pokemon-card>
+    </div>
+
+    <div class="h-full bg-slate-400 row-span-1">
+        forms
+    </div>
+
+</div>

@@ -43,24 +43,22 @@
     </div>
 
     <div
-        routerLink="/pokemon/{{Dex}}"
+        routerLink="/pokemon/{{Dex+1}}"
         class="h-4/5 w-4/5 flex items-center justify-center"
     >
         <img
             *ngIf="Shiny; else normalPokemon"
             class="object-contain h-full transform hover:scale-110 w-auto cursor-pointer"
-            src="https://img.pokemondb.net/sprites/home/shiny/{{Pokemon}}.png"
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/{{Dex+1}}.png"
             alt="{{Pokemon}} sprite"
         />
         <ng-template #normalPokemon>
             <img
                 class="object-contain h-full transform hover:scale-110 w-auto cursor-pointer"
-                src="https://img.pokemondb.net/sprites/home/normal/{{Pokemon}}.png"
+                src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{{Dex+1}}.png"
                 alt="{{Pokemon}} sprite"
             />
         </ng-template>
         
     </div>
 </div>
-
-

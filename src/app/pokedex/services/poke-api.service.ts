@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from "rxjs";
 import { HttpClient } from '@angular/common/http';
-import { pokemonSpecies } from 'src/app/models/PokemonSpecies';
 
 @Injectable({
   providedIn: 'root'
@@ -15,11 +14,15 @@ export class PokeAPIService {
     return this.http.get(`${this.baseurl}pokemon-species/?limit=1020`)
   }
 
-  getPokemonByDex(dex:number){
+  getPokemonByDex(dex:string){
     return this.http.get(`${this.baseurl}pokemon/${dex}`)
   }
   
-  getPokemonSpeciesByDex(dex:number){
+  getPokemonSpeciesByDex(dex:string){
     return this.http.get(`${this.baseurl}pokemon-species/${dex}`)
+  }
+
+  getEvolutionChain(url:string){
+    return this.http.get(url);
   }
 }

@@ -13,10 +13,4 @@ export class PokemonCardComponent {
   shiny():void{
     this.Shiny = !this.Shiny;
   }
-
-  ngOnInit(){
-    if(this.Pokemon.slice(0,4) == "tink"){
-      this.Pokemon += "-f" ;
-    }
-  }
 }
