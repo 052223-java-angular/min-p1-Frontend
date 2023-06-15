@@ -15,6 +15,7 @@ export class PokemonInfoComponent {
   public evolutionChain: any = {};
   public evolutionFamily: any = [];
   public forms: any = [];
+  public info: string = 'Names';
 
   constructor(private activatedRoute: ActivatedRoute, private pokeAPIservice:PokeAPIService) { }
 
@@ -69,6 +70,10 @@ export class PokemonInfoComponent {
         name : form.pokemon.name
       })
     }
+  }
+
+  changeInfo(info:string){
+    this.info = info;
   }
 
 

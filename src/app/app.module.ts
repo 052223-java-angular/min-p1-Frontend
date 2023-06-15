@@ -7,13 +7,15 @@ import { PokemonCardComponent } from './pokedex/components/pokemon-card/pokemon-
 import { PokedexComponent } from './pokedex/components/pokedex/pokedex.component';
 import { HttpClientModule } from '@angular/common/http';
 import { PokemonInfoComponent } from './pokedex/components/pokemon-info/pokemon-info.component';
+import { DropdownComponent } from './utility/dropdown/dropdown.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PokemonCardComponent,
     PokedexComponent,
-    PokemonInfoComponent
+    PokemonInfoComponent,
+    DropdownComponent
   ],
   imports: [
     BrowserModule,

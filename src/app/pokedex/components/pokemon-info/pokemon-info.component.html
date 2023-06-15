@@ -1,5 +1,5 @@
-<div class="grid grid-rows-4 min-h-screen w-full gap-1">
-    <div class="grid grid-cols-2 row-span-2 h-full gap-1">
+<div class="grid min-h-screen w-screen grid-rows-4 gap-1">
+    <div class="grid grid-cols-2 row-span-2 gap-1 w-full">
         <div class="grid grid-rows-5 w-full gap-1">
             <div class=" bg-slate-300 row-span-4 flex justify-center items-center">
                 <img  src="{{pokemon.sprites.other['official-artwork'].front_default}}" alt="">
@@ -25,30 +25,35 @@
 
             </div>
         </div>
-        <div class="grid grid-rows-5 w-full gap-1">
-            
-            <div class="bg-slate-500 row-span-4">
-                <button id="dropdownMenuIconButton" data-dropdown-toggle="dropdownDots" class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-900 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none dark:text-white focus:ring-gray-50 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-600" type="button"> 
-                    <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z"></path></svg>
-                </button>
-                  
-
-                <div id="dropdownDots" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
-                    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownMenuIconButton">
-                        <li>
-                            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">NAMES</a>
-                        </li>
-                        <li>
-                            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">POKEDEX</a>
-                        </li>
-                        <li>
-                            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">MOVES</a>
-                        </li>
-                        <li>
-                            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">BASE STAT</a>
-                        </li>
-                    </ul>
+        <div class="grid grid-rows-5 gap-1 w-full">
+            <div class="bg-slate-500 row-span-4 w-full overflow-auto">
+                <app-dropdown (OnChange)="changeInfo($event)" [items]="['Names', 'Pokedex', 'Base Stat', 'Moves']" selectedItem="Names" />
+                <div class="flex flex-col items-center h-[37vh] w-full overflow-auto text-xl">
+                    <div *ngIf="info == 'Names'">
+                        <p *ngFor="let name of pokemonSpecie.names">
+                            {{name.language.name}}: {{name.name}} 
+                        </p>
+                    </div>
+    
+                    <div *ngIf="info == 'Pokedex'">
+                        <p *ngFor="let idx of pokemon.game_indices">
+                            {{idx.version.name}}: {{idx.game_index}} 
+                        </p>
+                    </div>
+    
+                    <div *ngIf="info == 'Base Stat'">
+                        <p *ngFor="let stat of pokemon.stats">
+                            {{stat.stat.name}}: {{stat.base_stat}} 
+                        </p>
+                    </div>
+    
+                    <div *ngIf="info == 'Moves'" >
+                        <p *ngFor="let move of pokemon.moves">
+                            {{move.move.name}} 
+                        </p>
+                    </div>
                 </div>
+                
 
             </div>
             <div class="grid grid-cols-3 row-span-1 gap-1">
