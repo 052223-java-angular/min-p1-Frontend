@@ -48,13 +48,13 @@
     >
         <img
             *ngIf="Shiny; else normalPokemon"
-            class="object-contain h-full transform hover:scale-110 w-auto cursor-pointer"
+            class="object-contain h-full transform hover:scale-110 w-auto cursor-pointer drop-shadow-[0_15px_15px_rgba(255,255,255,0.5)] hover:drop-shadow-[0_15px_15px_rgba(211,44,255,0.5)] transition duration-200 ease-in-out"
             src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/{{Dex+1}}.png"
             alt="{{Pokemon}} sprite"
         />
         <ng-template #normalPokemon>
             <img
-                class="object-contain h-full transform hover:scale-110 w-auto cursor-pointer"
+                class="object-contain h-full transform hover:scale-110 w-auto cursor-pointer hover:drop-shadow-[0_15px_15px_rgba(211,44,255,0.5)] transition duration-150 ease-in-out"
                 src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{{Dex+1}}.png"
                 alt="{{Pokemon}} sprite"
             />
