@@ -8,6 +8,9 @@ import { PokedexComponent } from './pokedex/components/pokedex/pokedex.component
 import { HttpClientModule } from '@angular/common/http';
 import { PokemonInfoComponent } from './pokedex/components/pokemon-info/pokemon-info.component';
 import { DropdownComponent } from './utility/dropdown/dropdown.component';
+import { LoginComponent } from './user/component/login/login.component';
+import { RegisterComponent } from './user/component/register/register.component';
+
 
 @NgModule({
   declarations: [
@@ -15,7 +18,9 @@ import { DropdownComponent } from './utility/dropdown/dropdown.component';
     PokemonCardComponent,
     PokedexComponent,
     PokemonInfoComponent,
-    DropdownComponent
+    DropdownComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
