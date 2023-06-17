@@ -5,6 +5,7 @@ import { Auth } from 'src/app/models/Auth';
 import { RegisterPayload } from 'src/app/models/RegisterPayload';
 import { LoginPayload } from 'src/app/models/LoginPayload';
 import { AbstractControl, ValidatorFn } from '@angular/forms';
+import { User } from 'src/app/models/User'
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +23,10 @@ export class UserService {
 
   register(payload: RegisterPayload): Observable<Auth> {
     return this.http.post<Auth>(`${this.baseUrl}/auth/register`, payload);
+  }
+
+  getUser(): Observable<User> {
+    return this.http.get<User>(`${this.baseUrl}/auth/${sessionStorage.getItem('id')}`);
   }
 
   samePasswordValidator(

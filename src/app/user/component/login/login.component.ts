@@ -36,8 +36,12 @@ export class LoginComponent {
     };
 
     this.userService.login(payload).subscribe({
-      next: value => {
-        this.router.navigate(['/pokedex'])
+      next: principal => {
+        sessionStorage.setItem('id', principal.id);
+        sessionStorage.setItem('username', principal.username);
+        sessionStorage.setItem('role', principal.role);
+        sessionStorage.setItem('token', principal.token);
+        this.router.navigate([`/user/${principal.username}`])
       },
       error: error => {
         console.log("failed");

@@ -4,6 +4,7 @@ import { PokemonInfoComponent } from './pokedex/components/pokemon-info/pokemon-
 import { PokedexComponent } from './pokedex/components/pokedex/pokedex.component';
 import { RegisterComponent } from './user/component/register/register.component';
 import { LoginComponent } from './user/component/login/login.component';
+import { ProfileComponent } from './user/component/profile/profile.component';
 
 const routes: Routes = [
   {
@@ -20,6 +21,12 @@ const routes: Routes = [
   },
   {
     path: 'login', component: LoginComponent
+  },
+  {
+    path: 'user',
+    children: [
+      { path: ':username', component: ProfileComponent }
+    ]
   }
 ];
 
