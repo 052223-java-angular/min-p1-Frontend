@@ -11,6 +11,7 @@ import { PokemonInfoComponent } from './pokedex/components/pokemon-info/pokemon-
 import { DropdownComponent } from './utility/dropdown/dropdown.component';
 import { LoginComponent } from './user/component/login/login.component';
 import { RegisterComponent } from './user/component/register/register.component';
+import { ProfileComponent } from './user/component/profile/profile.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { RegisterComponent } from './user/component/register/register.component'
     PokemonInfoComponent,
     DropdownComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
