@@ -7,19 +7,19 @@ import { LoginComponent } from './user/component/login/login.component';
 
 const routes: Routes = [
   {
-    path:'pokemon',
-    children:[
-      {path: ':dex', component: PokemonInfoComponent}
+    path: 'pokemon',
+    children: [
+      { path: ':dex', component: PokemonInfoComponent }
     ]
   },
   {
-    path:'pokedex', component:PokedexComponent
+    path: 'pokedex', component: PokedexComponent
   },
   {
-    path:'register', component:RegisterComponent
+    path: 'register', component: RegisterComponent
   },
   {
-    path:'login', component:LoginComponent
+    path: 'login', component: LoginComponent
   }
 ];
 

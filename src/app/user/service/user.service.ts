@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Auth } from 'src/app/models/Auth';
 import { RegisterPayload } from 'src/app/models/RegisterPayload';
 import { LoginPayload } from 'src/app/models/LoginPayload';
+import { AbstractControl, ValidatorFn } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ import { LoginPayload } from 'src/app/models/LoginPayload';
 export class UserService {
   baseUrl = 'http://localhost:8080/pokemon/api';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   /* --------------------------- Methods --------------------------- */
 
@@ -21,5 +22,14 @@ export class UserService {
 
   register(payload: RegisterPayload): Observable<Auth> {
     return this.http.post<Auth>(`${this.baseUrl}/auth/register`, payload);
+  }
+
+  samePasswordValidator(
+    passwordControl: AbstractControl,
+    confirmedPasswordControl: AbstractControl
+  ): ValidatorFn {
+    return () => {
+      return passwordControl?.value === confirmedPasswordControl?.value ? null : { notSame: true };
+    };
   }
 }

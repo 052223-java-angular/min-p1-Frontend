@@ -10,19 +10,19 @@ export class PokeAPIService {
   constructor(private http: HttpClient) { }
 
 
-  getPokemonSpecies(){
+  getPokemonSpecies() {
     return this.http.get(`${this.baseurl}pokemon-species/?limit=1020`)
   }
 
-  getPokemonByDex(dex:string){
+  getPokemonByDex(dex: string) {
     return this.http.get(`${this.baseurl}pokemon/${dex}`)
   }
-  
-  getPokemonSpeciesByDex(dex:string){
+
+  getPokemonSpeciesByDex(dex: string) {
     return this.http.get(`${this.baseurl}pokemon-species/${dex}`)
   }
 
-  getEvolutionChain(url:string){
+  getEvolutionChain(url: string) {
     return this.http.get(url);
   }
 }

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit  } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-pokemon-card',
@@ -10,7 +10,7 @@ export class PokemonCardComponent {
   @Input() Dex !: number;
   Shiny: boolean = false;
 
-  shiny():void{
+  shiny(): void {
     this.Shiny = !this.Shiny;
   }
 }

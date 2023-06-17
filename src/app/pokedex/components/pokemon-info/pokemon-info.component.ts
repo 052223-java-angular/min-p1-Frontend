@@ -17,13 +17,13 @@ export class PokemonInfoComponent {
   public forms: any = [];
   public info: string = 'Names';
 
-  constructor(private activatedRoute: ActivatedRoute, private pokeAPIservice:PokeAPIService) { }
+  constructor(private activatedRoute: ActivatedRoute, private pokeAPIservice: PokeAPIService) { }
 
-  getPokemon(dex : string): void {
+  getPokemon(dex: string): void {
     this.pokeAPIservice.getPokemonByDex(dex).subscribe(data => this.pokemon = data);
   }
 
-  getPokemonSpecie(dex : string): void {
+  getPokemonSpecie(dex: string): void {
     this.pokeAPIservice.getPokemonSpeciesByDex(dex).subscribe(data => {
       this.pokemonSpecie = data
       this.getEvolutionChain(this.pokemonSpecie.evolution_chain.url);
@@ -31,28 +31,29 @@ export class PokemonInfoComponent {
     });
   }
 
-  getEvolutionChain(url : string): void {
-    this.pokeAPIservice.getEvolutionChain(url).subscribe(data =>{
+  getEvolutionChain(url: string): void {
+    this.pokeAPIservice.getEvolutionChain(url).subscribe(data => {
       this.evolutionChain = data;
       this.evolutionFamily.push({
-        dex : this.parseUrlForDex(this.evolutionChain.chain.species.url), 
-        name : this.evolutionChain.chain.species.name});
+        dex: this.parseUrlForDex(this.evolutionChain.chain.species.url),
+        name: this.evolutionChain.chain.species.name
+      });
       this.getEvolutionFamily(this.evolutionChain.chain.evolves_to);
     });
   }
 
-  getEvolutionFamily(family:any): void{
-    for(let pokemon of family){
-      let url:string = pokemon.species.url
+  getEvolutionFamily(family: any): void {
+    for (let pokemon of family) {
+      let url: string = pokemon.species.url
       this.evolutionFamily.push({
-        dex : this.parseUrlForDex(url), 
-        name : pokemon.species.name
+        dex: this.parseUrlForDex(url),
+        name: pokemon.species.name
       });
       this.getEvolutionFamily(pokemon.evolves_to);
     }
   }
 
-  parseUrlForDex(url:string){
+  parseUrlForDex(url: string) {
     return parseInt(
       url.slice(
         url.lastIndexOf(
@@ -63,16 +64,16 @@ export class PokemonInfoComponent {
     )
   }
 
-  getForms(): void{
-    for(let form of this.pokemonSpecie.varieties){
+  getForms(): void {
+    for (let form of this.pokemonSpecie.varieties) {
       this.forms.push({
-        dex : this.parseUrlForDex(form.pokemon.url),
-        name : form.pokemon.name
+        dex: this.parseUrlForDex(form.pokemon.url),
+        name: form.pokemon.name
       })
     }
   }
 
-  changeInfo(info:string){
+  changeInfo(info: string) {
     this.info = info;
   }
 
@@ -85,7 +86,7 @@ export class PokemonInfoComponent {
       this.getPokemon(this.dex);
       this.getPokemonSpecie(this.dex);
     });
-    
+
   }
 
 }

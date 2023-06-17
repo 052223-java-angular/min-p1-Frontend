@@ -4,7 +4,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   templateUrl: './dropdown.component.html',
   styleUrls: ['./dropdown.component.css']
 })
-export class DropdownComponent{
+export class DropdownComponent {
   @Input() items: string[] = [];
   @Input() selectedItem: string = '';
   @Output() OnChange: EventEmitter<string> = new EventEmitter<string>();

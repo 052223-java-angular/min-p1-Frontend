@@ -1,36 +1,39 @@
-<div class="flex justify-center items-center h-screen w-screen bg-[url('https://wallpaperset.com/w/full/b/d/3/383756.jpg')] bg-contain">
-    <form class=" p-5 h-1/3 flex flex-col justify-between rounded-xl shadow-xl shadow-yellow-600" [formGroup]="formGroup" (ngSubmit)="submitForm()">
-        <h1 class="text-center text-xl">LOGIN</h1>
-        <label class="grid grid-cols-2 bg-green-300 rounded-sm text-yellow-700 bg-opacity-60">
-          Username:
-          <input class="bg-opacity-60 bg-black text-slate-200 rounded-sm" type="text" formControlName="username" />
-        </label>
-        <div *ngIf="username.invalid && (username.dirty || username.touched)">
-          <div *ngIf="username.errors?.['required']"  class="text-red-400">
-            username is required.
-          </div>
-        </div>
-        <br />
+<div
+  class="flex justify-center items-center h-screen w-screen bg-[url('https://wallpaperset.com/w/full/b/d/3/383756.jpg')] bg-contain">
+  <form class=" p-5 h-1/3 flex flex-col justify-between rounded-xl shadow-xl shadow-yellow-600" [formGroup]="formGroup"
+    (ngSubmit)="submitForm()">
+    <h1 class="text-center text-xl">LOGIN</h1>
+    <label class="grid grid-cols-2 bg-green-300 rounded-sm text-yellow-700 bg-opacity-60">
+      Username:
+      <input class="bg-opacity-60 bg-black text-slate-200 rounded-sm" type="text" formControlName="username" />
+    </label>
+    <div *ngIf="username.invalid && (username.dirty || username.touched)">
+      <div *ngIf="username.errors?.['required']" class="text-red-400">
+        username is required.
+      </div>
+    </div>
+    <br />
 
-        <label class="grid grid-cols-2 bg-green-300 rounded-sm text-yellow-700  bg-opacity-60">
-          Password:
-          <input class="bg-opacity-60 bg-black text-slate-200 rounded-sm" type="password" formControlName="password" />
-        </label>
-        <div *ngIf="password.invalid && (password.dirty || password.touched)">
-          <div *ngIf="password.errors?.['required']" class="text-red-400">
-            password is required.
-          </div>
-          <div *ngIf="password.errors?.['pattern']"  class="text-red-400">
-            password must atleast 8 characters with least one letter and one number.
-          </div>
-        </div>
-        <br />
-        
-        <div class="flex justify-between">
-            <a class="text-blue-500 hover:underline underline-offset-4" routerLink="/register">Don't have an account?</a>
-            <button class="bg-blue-400 w-fit p-2 rounded-lg bg-opacity-60 hover:scale-110 cursor-pointer hover:shadow-md hover:shadow-blue-700 transition duration-200 ease-in-out" type="submit" [disabled]="formGroup.invalid">Login</button>
-        </div>
-        
-    </form>
+    <label class="grid grid-cols-2 bg-green-300 rounded-sm text-yellow-700  bg-opacity-60">
+      Password:
+      <input class="bg-opacity-60 bg-black text-slate-200 rounded-sm" type="password" formControlName="password" />
+    </label>
+    <div *ngIf="password.invalid && (password.dirty || password.touched)">
+      <div *ngIf="password.errors?.['required']" class="text-red-400">
+        password is required.
+      </div>
+      <div *ngIf="password.errors?.['pattern']" class="text-red-400">
+        password must atleast 8 characters with least one letter and one number.
+      </div>
+    </div>
+    <br />
+
+    <div class="flex justify-between">
+      <a class="text-blue-500 hover:underline underline-offset-4" routerLink="/register">Don't have an account?</a>
+      <button
+        class="bg-blue-400 w-fit p-2 rounded-lg bg-opacity-60 hover:scale-110 cursor-pointer hover:shadow-md hover:shadow-blue-700 transition duration-200 ease-in-out"
+        type="submit" [disabled]="formGroup.invalid">Login</button>
+    </div>
+
+  </form>
 </div>
-

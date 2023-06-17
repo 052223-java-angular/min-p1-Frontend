@@ -7,17 +7,17 @@ import { PokeAPIService } from '../../services/poke-api.service';
   styleUrls: ['./pokedex.component.css'],
   providers: [PokeAPIService]
 })
-export class PokedexComponent implements OnInit{
-  constructor(private pokeAPIservice:PokeAPIService){};
+export class PokedexComponent implements OnInit {
+  constructor(private pokeAPIservice: PokeAPIService) { };
 
-  pokemonList : any;
+  pokemonList: any;
   getPokemonList(): void {
     this.pokeAPIservice.getPokemonSpecies().subscribe(data => this.pokemonList = data);
   }
 
-  ngOnInit(){
+  ngOnInit() {
     this.getPokemonList();
   }
-  
+
 };
 

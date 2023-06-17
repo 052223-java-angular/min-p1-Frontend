@@ -14,12 +14,12 @@ export class LoginComponent {
   username: AbstractControl;
   password: AbstractControl;
 
-  constructor(private fb: FormBuilder, private userService:UserService, private router:Router){
+  constructor(private fb: FormBuilder, private userService: UserService, private router: Router) {
     this.formGroup = fb.group({
       username: ['', [Validators.required]],
       password: ['', [Validators.required]],
     });
-    
+
     this.username = this.formGroup.controls['username'];
     this.password = this.formGroup.controls['password'];
   }
@@ -29,22 +29,22 @@ export class LoginComponent {
     if (this.formGroup.invalid) {
       return;
     }
-    
+
     const payload: LoginPayload = {
       username: this.formGroup.controls['username'].value,
       password: this.formGroup.controls['password'].value,
     };
-    
+
     this.userService.login(payload).subscribe({
-      next: value =>{
+      next: value => {
         this.router.navigate(['/pokedex'])
       },
-      error: error =>{
+      error: error => {
         console.log("failed");
         // Handle the error response
         // TODO: Add code for handling error response
       }
     })
-    
+
   }
 }
