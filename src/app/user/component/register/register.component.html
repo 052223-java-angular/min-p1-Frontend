@@ -6,10 +6,10 @@
           <input class="bg-opacity-60 bg-black text-slate-200 rounded-sm" type="text" formControlName="username" />
         </label>
         <div *ngIf="username.invalid && (username.dirty || username.touched)">
-          <div *ngIf="username.errors?.['required']">
+          <div *ngIf="username.errors?.['required']"  class="text-red-400">
             username is required.
           </div>
-          <div *ngIf="username.errors?.['pattern']">
+          <div *ngIf="username.errors?.['pattern']"  class="text-red-400">
             username must be between 8-20 characters long.
           </div>
         </div>
@@ -19,10 +19,10 @@
           <input class="bg-opacity-60 bg-black text-slate-200 rounded-sm" type="email" formControlName="email" />
         </label>
         <div *ngIf="email.invalid && (email.dirty || email.touched)">
-          <div *ngIf="email.errors?.['required']">
+          <div *ngIf="email.errors?.['required']"  class="text-red-400">
             email is required.
           </div>
-          <div *ngIf="email.errors?.['email']">
+          <div *ngIf="email.errors?.['email']"  class="text-red-400">
             Invalid email.
           </div>
         </div>
@@ -32,10 +32,10 @@
           <input class="bg-opacity-60 bg-black text-slate-200 rounded-sm" type="password" formControlName="password" />
         </label>
         <div *ngIf="password.invalid && (password.dirty || password.touched)">
-          <div *ngIf="password.errors?.['required']">
+          <div *ngIf="password.errors?.['required']"  class="text-red-400">
             password is required.
           </div>
-          <div *ngIf="password.errors?.['pattern']">
+          <div *ngIf="password.errors?.['pattern']"  class="text-red-400">
             password must atleast 8 characters with least one letter and one number.
           </div>
         </div>
@@ -44,18 +44,20 @@
           Confirm Password:
           <input class="bg-opacity-60 bg-black text-slate-200 rounded-sm foc" type="password" formControlName="confirmedPassword" />
         </label>
-        <br />
         <div *ngIf="confirmedPassword.invalid && (confirmedPassword.dirty || confirmedPassword.touched)">
-          <div *ngIf="confirmedPassword.errors?.['required']">
+          <div *ngIf="confirmedPassword.errors?.['required']; else match"  class="text-red-400">
             confirm password is required.
           </div>
-          <div *ngIf="confirmedPassword.errors?.['notSame']">
-            password does not match
-          </div>
+          <ng-template #match>
+            <div *ngIf="confirmedPassword.errors?.['notSame']"  class="text-red-400">
+              password does not match
+            </div>
+          </ng-template>
+          
         </div>
         <div class="flex justify-between">
             <a class="text-blue-500 hover:underline underline-offset-4" routerLink="/login">Already have account?</a>
-            <button class="bg-blue-400 w-fit p-2 rounded-lg bg-opacity-60 hover:scale-110 cursor-pointer hover:shadow-md hover:shadow-blue-700 transition duration-200 ease-in-out" type="submit" [disabled]="formGroup.invalid">Submit</button>
+            <button class="bg-blue-400 w-fit p-2 rounded-lg bg-opacity-60 hover:scale-110 cursor-pointer hover:shadow-md hover:shadow-blue-700 transition duration-200 ease-in-out" type="submit" [disabled]="formGroup.invalid">Register</button>
         </div>
         
     </form>

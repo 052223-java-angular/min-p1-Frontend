@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from "@angular/forms";
 import { UserService } from "../../service/user.service";
 import { RegisterPayload } from "src/app/models/RegisterPayload";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-register',
@@ -15,7 +16,7 @@ export class RegisterComponent {
   password: AbstractControl;
   confirmedPassword:AbstractControl;
 
-  constructor(private fb: FormBuilder, private userService:UserService){
+  constructor(private fb: FormBuilder, private userService:UserService, private router:Router){
     this.formGroup = fb.group({
       username: ['', [Validators.required, Validators.pattern('(?=[a-zA-Z0-9._]{8,20}$)(?!.*[_.]{2})[^_.].*[^_.]')]],
       email: ['', [Validators.required, Validators.email]],
@@ -58,9 +59,7 @@ export class RegisterComponent {
     
     this.userService.register(payload).subscribe({
       next: value =>{
-        console.log("success");
-        // Handle the success response
-        // TODO: Add code for handling success response
+        this.router.navigate(['/login'])
       },
       error: error =>{
         console.log("failed");
