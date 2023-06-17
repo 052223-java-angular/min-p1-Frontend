@@ -1,12 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Auth } from 'src/app/models/Auth';
+import { RegisterPayload } from 'src/app/models/RegisterPayload';
+import { LoginPayload } from 'src/app/models/LoginPayload';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  baseUrl = environment.apiBaseUrl;
+  baseUrl = 'http://localhost:8080/pokemon/api';
 
   constructor(private http: HttpClient) {}
 

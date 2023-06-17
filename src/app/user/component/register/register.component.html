@@ -21,7 +21,8 @@
           <input class="bg-opacity-60 bg-black text-slate-200 rounded-sm foc" type="password" formControlName="password" />
         </label>
         <br />
-        <div class="flex justify-center">
+        <div class="flex justify-between">
+            <a class="text-blue-500 hover:underline underline-offset-4" routerLink="/login">Already have account?</a>
             <button class="bg-blue-400 w-fit p-2 rounded-lg bg-opacity-60 hover:scale-110 cursor-pointer hover:shadow-md hover:shadow-blue-700 transition duration-200 ease-in-out" type="submit" [disabled]="formGroup.invalid">Submit</button>
         </div>
         

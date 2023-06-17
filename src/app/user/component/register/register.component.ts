@@ -1,5 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { UserService } from "../../service/user.service";
+import { RegisterPayload } from "src/app/models/RegisterPayload";
 
 @Component({
   selector: 'app-register',
@@ -9,7 +11,7 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 export class RegisterComponent {
   formGroup!: FormGroup;
 
-  constructor(private fb: FormBuilder){}
+  constructor(private fb: FormBuilder, private userService:UserService){}
 
   ngOnInit() {
     this.formGroup = this.fb.group({
@@ -24,7 +26,23 @@ export class RegisterComponent {
       return;
     }
   
-    // Perform form submission logic
-    console.log(this.formGroup.value);
+    const payload: RegisterPayload = {
+      username: this.formGroup.controls['username'].value,
+      password: this.formGroup.controls['password'].value,
+      email: this.formGroup.controls['email'].value,
+      confirmPassword: this.formGroup.controls['confirmPassword'].value,
+    };
+
+    this.userService.register(payload).subscribe({
+      next: value =>{
+        // Handle the success response
+        // TODO: Add code for handling success response
+      },
+      error: error =>{
+        // Handle the error response
+        // TODO: Add code for handling error response
+      }
+    })
+    
   }
 }
