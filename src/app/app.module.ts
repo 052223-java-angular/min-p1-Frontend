@@ -12,6 +12,10 @@ import { DropdownComponent } from './utility/dropdown/dropdown.component';
 import { LoginComponent } from './user/component/login/login.component';
 import { RegisterComponent } from './user/component/register/register.component';
 import { ProfileComponent } from './user/component/profile/profile.component';
+import { PostsComponent } from './user/component/posts/posts.component';
+import { PostComponent } from './user/component/post/post.component';
+import { BuildComponent } from './user/component/build/build.component';
+import { TeamComponent } from './user/component/team/team.component';
 
 
 @NgModule({
@@ -23,7 +27,11 @@ import { ProfileComponent } from './user/component/profile/profile.component';
     DropdownComponent,
     LoginComponent,
     RegisterComponent,
-    ProfileComponent
+    ProfileComponent,
+    PostsComponent,
+    PostComponent,
+    BuildComponent,
+    TeamComponent
   ],
   imports: [
     BrowserModule,
