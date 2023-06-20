@@ -16,6 +16,10 @@ import { PostsComponent } from './user/component/posts/posts.component';
 import { PostComponent } from './user/component/post/post.component';
 import { BuildComponent } from './user/component/build/build.component';
 import { TeamComponent } from './user/component/team/team.component';
+import { PostCardComponent } from './user/component/post-card/post-card.component';
+import { CommentCardComponent } from './user/component/comment-card/comment-card.component';
+import { BuildCardsComponent } from './user/component/build-cards/build-cards.component';
+import { TeamCardsComponent } from './user/component/team-cards/team-cards.component';
 
 
 @NgModule({
@@ -31,7 +35,11 @@ import { TeamComponent } from './user/component/team/team.component';
     PostsComponent,
     PostComponent,
     BuildComponent,
-    TeamComponent
+    TeamComponent,
+    PostCardComponent,
+    CommentCardComponent,
+    BuildCardsComponent,
+    TeamCardsComponent
   ],
   imports: [
     BrowserModule,
