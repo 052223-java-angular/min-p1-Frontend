@@ -1,9 +1,9 @@
 <div class=" flex flex-col gap-2">
-    <div>Title</div>
+    <div>{{post.postTitle}}</div>
     <div class="grid grid-cols-10">
         <div class="col-span-1  flex flex-col items-center justify-top bg-slate-300 p-2">
             <div>
-                0
+                {{post.votes.length}}
             </div>
             <div>
                 votes
@@ -11,37 +11,15 @@
         </div>
 
         <div class="col-span-9 bg-slate-700 flex flex-col justify-start p-2">
-            <div>comment</div>
-            <div>comment</div>
-            <div>comment</div>
-            <div>comment</div>
-            <div>comment</div>
-            <div>comment</div>
-            <div>comment</div>
-            <div>comment</div>
-            <div>comment</div>
-            <div>comment</div>
-            <div>comment</div>
-            <div>comment</div>
-            <div>comment</div>
-            <div>comment</div>
-            <div>comment</div>
-            <div>comment</div>
-            <div>comment</div>
+            {{post.message}}
 
-            <div>commented by/last edit</div>
+            <div>last edited on {{post.edit_time}}</div>
         </div>
     </div>
     <div class="grid grid-cols-10">
         <div class="col-span-1"></div>
         <div class="col-span-9 flex flex-col gap-2">
-            <app-comment-card></app-comment-card>
-            <app-comment-card></app-comment-card>
-            <app-comment-card></app-comment-card>
-            <app-comment-card></app-comment-card>
-            <app-comment-card></app-comment-card>
-            <app-comment-card></app-comment-card>
-            <app-comment-card></app-comment-card>
+            <app-comment-card *ngFor="let comment of post.comments" [comment]="comment"></app-comment-card>
         </div>
     </div>
 

@@ -1,7 +1,7 @@
 <div class="grid grid-cols-10">
     <div class="col-span-1  flex flex-col items-center justify-center bg-slate-300 p-2">
         <div>
-            0
+            {{post.votes.length}}
         </div>
         <div>
             votes
@@ -9,14 +9,14 @@
     </div>
     <div class="col-span-1 flex flex-col  items-center justify-center  bg-slate-500 p-2">
         <div>
-            0
+            {{post.comments.length}}
         </div>
         <div>
             comments
         </div>
     </div>
     <div class="col-span-8 bg-slate-700 flex flex-col justify-start p-2">
-        <div>title</div>
-        <div>last commented by/edited by</div>
+        <div>{{post.postTitle}}</div>
+        <div>last edited on {{post.edit_time}}</div>
     </div>
 </div>

@@ -25,7 +25,6 @@ export class LoginComponent {
   }
 
   submitForm() {
-    console.log("payload");
     if (this.formGroup.invalid) {
       return;
     }

@@ -7,6 +7,7 @@ import { LoginPayload } from 'src/app/models/LoginPayload';
 import { AbstractControl, ValidatorFn } from '@angular/forms';
 import { User } from 'src/app/models/User'
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -37,4 +38,6 @@ export class UserService {
       return passwordControl?.value === confirmedPasswordControl?.value ? null : { notSame: true };
     };
   }
+
+
 }
