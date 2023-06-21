@@ -19,6 +19,7 @@ export class PostComponent {
   id!: string;
   newComment: boolean = false;
   modifyPost: boolean = false;
+  user: string = sessionStorage.getItem('username') || '';
 
   constructor(private fb: FormBuilder, private activatedRoute: ActivatedRoute, private postService: PostService) {
     this.formGroup = fb.group({

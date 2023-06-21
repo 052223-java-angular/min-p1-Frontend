@@ -5,5 +5,6 @@ export interface Post {
     create_time: string,
     edit_time: string,
     comments: [],
-    votes: []
+    votes: [],
+    username: string
 }

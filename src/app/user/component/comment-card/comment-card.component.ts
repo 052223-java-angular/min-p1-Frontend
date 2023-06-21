@@ -11,6 +11,7 @@ import { ModifyCommentPayload } from 'src/app/models/ModifyCommentPayload';
 export class CommentCardComponent {
   @Input() comment: any;
   modifyCommentC: boolean = false;
+  user: string = sessionStorage.getItem('username') || '';
 
   formGroup: FormGroup;
   constructor(private fb: FormBuilder, private postService: PostService) {
