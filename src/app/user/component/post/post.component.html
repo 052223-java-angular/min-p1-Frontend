@@ -14,6 +14,33 @@
             {{post.message}}
 
             <div>last edited on {{post.edit_time}}</div>
+
+            <button (click)="modifyPostClick()">Modify Post</button>
+            <form *ngIf="modifyPost"
+                class=" p-5 h-1/3 flex flex-col justify-between rounded-xl shadow-xl shadow-yellow-600"
+                [formGroup]="formGroupB" (ngSubmit)="ModifyPost()">
+
+                <label class="grid grid-cols-2 bg-green-300 rounded-sm text-yellow-700 bg-opacity-60">
+                    Title:
+                    <input class="bg-opacity-60 bg-black text-slate-200 rounded-sm" type="text"
+                        formControlName="postTitle" />
+                </label>
+
+                <label class="grid grid-cols-2 bg-green-300 rounded-sm text-yellow-700 bg-opacity-60">
+                    Message:
+                    <input class="bg-opacity-60 bg-black text-slate-200 rounded-sm" type="text"
+                        formControlName="message" />
+                </label>
+
+
+                <div class="flex justify-between">
+
+                    <button
+                        class="bg-blue-400 w-fit p-2 rounded-lg bg-opacity-60 hover:scale-110 cursor-pointer hover:shadow-md hover:shadow-blue-700 transition duration-200 ease-in-out"
+                        type="submit" [disabled]="formGroupB.invalid">Submit</button>
+                </div>
+
+            </form>
         </div>
     </div>
     <div class="grid grid-cols-10">
@@ -22,5 +49,24 @@
             <app-comment-card *ngFor="let comment of post.comments" [comment]="comment"></app-comment-card>
         </div>
     </div>
+    <button (click)="newCommentClick()">New Post</button>
+    <form *ngIf="newComment" class=" p-5 h-1/3 flex flex-col justify-between rounded-xl shadow-xl shadow-yellow-600"
+        [formGroup]="formGroup" (ngSubmit)="submitComment()">
+
+        <label class="grid grid-cols-2 bg-green-300 rounded-sm text-yellow-700 bg-opacity-60">
+            Comment:
+            <input class="bg-opacity-60 bg-black text-slate-200 rounded-sm" type="text" formControlName="comment" />
+        </label>
+
+
+        <div class="flex justify-between">
+            <a class="text-blue-500 hover:underline underline-offset-4" routerLink="/register">Don't have an
+                account?</a>
+            <button
+                class="bg-blue-400 w-fit p-2 rounded-lg bg-opacity-60 hover:scale-110 cursor-pointer hover:shadow-md hover:shadow-blue-700 transition duration-200 ease-in-out"
+                type="submit" [disabled]="formGroup.invalid">Submit</button>
+        </div>
+
+    </form>
 
 </div>
