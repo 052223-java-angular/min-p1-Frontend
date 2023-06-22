@@ -23,6 +23,7 @@ export class PostComponent {
   user: string = sessionStorage.getItem('username') || '';
   up: number = 0;
   down: number = 0;
+  voted: boolean[] = [false, false];
 
   constructor(private fb: FormBuilder, private activatedRoute: ActivatedRoute, private postService: PostService) {
     this.formGroup = fb.group({
@@ -42,6 +43,13 @@ export class PostComponent {
         this.post = res;
         this.up = this.post.votes.filter(vote => vote['vote']).length;
         this.down = this.post.votes.length - this.up;
+        this.post.votes.forEach(vote => {
+          if (vote['username'] == sessionStorage.getItem('username')) {
+            this.voted[0] = true;
+            this.voted[1] = vote['vote'];
+            console.log(vote, this.voted)
+          }
+        });
       });
 
     });

@@ -2,7 +2,6 @@ import { Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PostService } from '../../service/post.service';
 import { ModifyCommentPayload } from 'src/app/models/ModifyCommentPayload';
-import { CommentPayload } from 'src/app/models/CommentPayload';
 import { CommentVotePayload } from 'src/app/models/CommentVotePayload';
 
 @Component({
@@ -16,6 +15,7 @@ export class CommentCardComponent {
   user: string = sessionStorage.getItem('username') || '';
   up: number = 0;
   down: number = 0;
+  voted: boolean[] = [false, false];
 
   formGroup: FormGroup;
   constructor(private fb: FormBuilder, private postService: PostService) {
@@ -99,5 +99,12 @@ export class CommentCardComponent {
   ngOnInit() {
     this.up = this.comment.commentVotes.filter((vote: { [x: string]: any; }) => vote['vote']).length;
     this.down = this.comment.commentVotes.length - this.up;
+
+    this.comment.commentVotes.forEach((vote: { [x: string]: any; }) => {
+      if (vote['username'] == sessionStorage.getItem('username')) {
+        this.voted[0] = true;
+        this.voted[1] = vote['vote'];
+      }
+    });
   }
 }
