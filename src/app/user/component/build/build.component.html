@@ -1,6 +1,57 @@
+<div class=" bg-gray-800 flex flex-row rounded-lg shadow-outline min-w-[230px] shadow-md shadow-slate-300 text-black">
+    <div>
+        <div class="flex flex-row items-center">
+            <label>pokemon:</label>
+            <input type="text">
+
+        </div>
+
+        <img class="object-contain"
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{{dex}}.png"
+            alt="{{dex}} sprite" />
+        <div class="flex flex-row">
+            <div class="flex flex-row items-center">
+                <label>nature:</label>
+                <input type="text">
+
+            </div>
+            <div class="flex flex-row items-center">
+                <label>ability:</label>
+                <input type="text">
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="text-center w-1/2  flex flex-col">
+        <div class="flex flex-row items-center">
+            <label>move:</label>
+            <input type="text">
+        </div>
+
+        <div class="flex flex-row items-center">
+            <label>move:</label>
+            <input type="text">
+        </div>
+        <div class="flex flex-row items-center">
+            <label>move:</label>
+            <input type="text">
+        </div>
+        <div class="flex flex-row items-center">
+            <label>move:</label>
+            <input type="text">
+        </div>
+
+
+    </div>
+    <button (click)="save()">Save</button>
+</div>
 <div>
-    like pokemon cards
-    4 move dropdowns
-    1 nature dropdown
-    1 ability dropdown
+    <app-dropdown (OnChange)="changeInfo($event)" [items]="nameList" selectedItem="Pokemon" />
+    <app-dropdown [items]="moveList" selectedItem="Move" />
+    <app-dropdown [items]="abilityList" selectedItem="Ability" />
+    <app-dropdown [items]="natureList" selectedItem="Nature" />
+
+
 </div>
