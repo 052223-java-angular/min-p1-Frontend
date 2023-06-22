@@ -5,6 +5,7 @@ import { Post } from 'src/app/models/Post';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommentPayload } from 'src/app/models/CommentPayload';
 import { ModifyPostPayload } from 'src/app/models/ModifyPostPayload';
+import { PostVotePayload } from 'src/app/models/PostVotePayload';
 
 @Component({
   selector: 'app-post',
@@ -20,6 +21,8 @@ export class PostComponent {
   newComment: boolean = false;
   modifyPost: boolean = false;
   user: string = sessionStorage.getItem('username') || '';
+  up: number = 0;
+  down: number = 0;
 
   constructor(private fb: FormBuilder, private activatedRoute: ActivatedRoute, private postService: PostService) {
     this.formGroup = fb.group({
@@ -37,7 +40,8 @@ export class PostComponent {
       this.id = params['postId'];
       this.postService.getPost(this.id).subscribe(res => {
         this.post = res;
-        console.log(this.post);
+        this.up = this.post.votes.filter(vote => vote['vote']).length;
+        this.down = this.post.votes.length - this.up;
       });
 
     });
@@ -105,6 +109,46 @@ export class PostComponent {
 
   newCommentClick() {
     this.newComment = true;
+  }
+
+  upvote() {
+    const payload: PostVotePayload = {
+      vote: true,
+      userId: sessionStorage.getItem('id') || '',
+      postId: this.post.id
+    };
+    this.postService.votePost(payload).subscribe({
+      next: comment => {
+        console.log("success");
+        // Handle the sucsess response
+        // TODO: Add code for handling success response
+      },
+      error: error => {
+        console.log("failed");
+        // Handle the error response
+        // TODO: Add code for handling error response
+      }
+    })
+  }
+
+  downvote() {
+    const payload: PostVotePayload = {
+      vote: false,
+      userId: sessionStorage.getItem('id') || '',
+      postId: this.post.id
+    };
+    this.postService.votePost(payload).subscribe({
+      next: comment => {
+        console.log("success");
+        // Handle the sucsess response
+        // TODO: Add code for handling success response
+      },
+      error: error => {
+        console.log("failed");
+        // Handle the error response
+        // TODO: Add code for handling error response
+      }
+    })
   }
 
 }

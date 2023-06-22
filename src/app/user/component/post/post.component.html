@@ -2,12 +2,14 @@
     <div>{{post.postTitle}}</div>
     <div class="grid grid-cols-10">
         <div class="col-span-1  flex flex-col items-center justify-top bg-slate-300 p-2">
+            <button (click)="upvote()">up</button>
             <div>
-                {{post.votes.length}}
+                {{up-down}}
             </div>
             <div>
                 votes
             </div>
+            <button (click)="downvote()">down</button>
         </div>
 
         <div class="col-span-9 bg-slate-700 flex flex-col justify-start p-2">
