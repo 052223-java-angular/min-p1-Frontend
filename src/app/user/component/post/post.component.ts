@@ -47,7 +47,6 @@ export class PostComponent {
           if (vote['username'] == sessionStorage.getItem('username')) {
             this.voted[0] = true;
             this.voted[1] = vote['vote'];
-            console.log(vote, this.voted)
           }
         });
       });
