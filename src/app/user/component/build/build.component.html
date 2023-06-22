@@ -2,7 +2,7 @@
     <div>
         <div class="flex flex-row items-center">
             <label>pokemon:</label>
-            <input type="text">
+            <app-auto-complete (optionSelected)="changeInfo($event)" [options]="nameList"></app-auto-complete>
 
         </div>
 
@@ -12,12 +12,12 @@
         <div class="flex flex-row">
             <div class="flex flex-row items-center">
                 <label>nature:</label>
-                <input type="text">
+                <app-auto-complete [options]="natureList"></app-auto-complete>
 
             </div>
             <div class="flex flex-row items-center">
                 <label>ability:</label>
-                <input type="text">
+                <app-auto-complete [options]="abilityList"></app-auto-complete>
             </div>
 
         </div>
@@ -27,31 +27,23 @@
     <div class="text-center w-1/2  flex flex-col">
         <div class="flex flex-row items-center">
             <label>move:</label>
-            <input type="text">
+            <app-auto-complete [options]="moveList"></app-auto-complete>
         </div>
 
         <div class="flex flex-row items-center">
             <label>move:</label>
-            <input type="text">
+            <app-auto-complete [options]="moveList"></app-auto-complete>
         </div>
         <div class="flex flex-row items-center">
             <label>move:</label>
-            <input type="text">
+            <app-auto-complete [options]="moveList"></app-auto-complete>
         </div>
         <div class="flex flex-row items-center">
             <label>move:</label>
-            <input type="text">
+            <app-auto-complete [options]="moveList"></app-auto-complete>
         </div>
 
 
     </div>
     <button (click)="save()">Save</button>
-</div>
-<div>
-    <app-dropdown (OnChange)="changeInfo($event)" [items]="nameList" selectedItem="Pokemon" />
-    <app-dropdown [items]="moveList" selectedItem="Move" />
-    <app-dropdown [items]="abilityList" selectedItem="Ability" />
-    <app-dropdown [items]="natureList" selectedItem="Nature" />
-
-
 </div>

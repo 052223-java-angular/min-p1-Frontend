@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output } from '@angular/core';
 import { BuildPayload } from 'src/app/models/BuildPayload';
 import { PokeAPIService } from 'src/app/pokedex/services/poke-api.service';
 
@@ -9,6 +9,7 @@ import { PokeAPIService } from 'src/app/pokedex/services/poke-api.service';
   styleUrls: ['./build.component.css'],
 })
 export class BuildComponent {
+  public option: any;
   public dex: string = "1";
   public pokemon: any = {};
   public pokemonList: { [index: string]: string } = {
