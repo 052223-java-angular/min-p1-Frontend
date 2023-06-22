@@ -63,7 +63,16 @@ export class CommentCardComponent {
       commentId: this.comment.id
     };
     this.postService.voteComment(payload).subscribe({
-      next: comment => {
+      next: ele => {
+
+        if (this.voted[0] && this.voted[1]) {
+          this.voted = [false, false]
+          this.up--;
+        } else {
+          if (this.voted[0]) this.down--;
+          this.up++;
+          this.voted = [true, true]
+        }
         console.log("success");
         // Handle the sucsess response
         // TODO: Add code for handling success response
@@ -83,7 +92,15 @@ export class CommentCardComponent {
       commentId: this.comment.id
     };
     this.postService.voteComment(payload).subscribe({
-      next: comment => {
+      next: ele => {
+        if (this.voted[0] && !this.voted[1]) {
+          this.voted = [false, false]
+          this.down--;
+        } else {
+          if (this.voted[0]) this.up--;
+          this.down++;
+          this.voted = [true, false]
+        }
         console.log("success");
         // Handle the sucsess response
         // TODO: Add code for handling success response
