@@ -11,7 +11,7 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-builders/custom-webpack:browser",
+          "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist/pokemon",
             "index": "src/index.html",
@@ -19,9 +19,6 @@
             "polyfills": [
               "zone.js"
             ],
-            "customWebpackConfig": {
-              "path": "webpack.config.js"
-            },
             "tsConfig": "tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
@@ -67,7 +64,7 @@
           "defaultConfiguration": "production"
         },
         "serve": {
-          "builder": "@angular-builders/custom-webpack:dev-server",
+          "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
               "browserTarget": "pokemon:build:production"
@@ -76,12 +73,7 @@
               "browserTarget": "pokemon:build:development"
             }
           },
-          "defaultConfiguration": "development",
-          "options": {
-            "customWebpackConfig": {
-              "path": "webpack.config.js"
-            }
-          }
+          "defaultConfiguration": "development"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
