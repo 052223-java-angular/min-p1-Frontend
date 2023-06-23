@@ -23,6 +23,7 @@ import { TeamCardsComponent } from './user/component/team-cards/team-cards.compo
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AutoCompleteComponent } from './utility/auto-complete/auto-complete.component';
 import { FormsModule } from '@angular/forms';
+import { MatDialogModule } from '@angular/material/dialog';
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,7 +51,8 @@ import { FormsModule } from '@angular/forms';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     AutoCompleteComponent,
-    FormsModule
+    FormsModule,
+    MatDialogModule
 
   ],
   providers: [],
