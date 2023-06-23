@@ -1,13 +1,13 @@
 <div mat-dialog-content class="flex flex-col justify-center w-fit">
-    <input [value]="buildName" [(ngModel)]="buildName"
+    <input [value]="payload.name" [(ngModel)]="payload.name"
         class="text-5xl text-center placeholder-red-300 border border-red-400" placeholder="BUILD NAME" type="text">
     <div
         class="p-3 bg-gray-800 flex flex-row rounded-lg shadow-outline min-w-[230px] shadow-md shadow-slate-300 text-black">
         <div>
             <div class="flex flex-row items-center">
                 <label class="text-4xl text-white">pokemon: </label>
-                <app-auto-complete [selected]="data.pokemonName" (optionSelected)="changeInfo($event)"
-                    [options]="nameList"></app-auto-complete>
+                <app-auto-complete [selected]="payload.pokemonName" [(ngModel)]="payload.pokemonName"
+                    (optionSelected)="changeInfo($event)" [options]="nameList"></app-auto-complete>
 
             </div>
 
@@ -18,24 +18,24 @@
                 <div class="text-center w-1/2  flex flex-col">
                     <div class="flex flex-row items-center">
                         <label class="text-4xl text-white">move:</label>
-                        <app-auto-complete [selected]="data.moves[0].name" (optionSelected)="changeMoveOne($event)"
+                        <app-auto-complete [selected]="payload.learnedMoves[0]" (optionSelected)="changeMoveOne($event)"
                             [options]="moveList"></app-auto-complete>
                     </div>
 
                     <div class="flex flex-row items-center">
                         <label class="text-4xl text-white">move:</label>
-                        <app-auto-complete [selected]="data.moves[1].name" (optionSelected)="changeMoveTwo($event)"
+                        <app-auto-complete [selected]="payload.learnedMoves[1]" (optionSelected)="changeMoveTwo($event)"
                             [options]="moveList"></app-auto-complete>
                     </div>
                     <div class="flex flex-row items-center">
                         <label class="text-4xl text-white">move:</label>
-                        <app-auto-complete [selected]="data.moves[2].name" (optionSelected)="changeMoveThree($event)"
-                            [options]="moveList"></app-auto-complete>
+                        <app-auto-complete [selected]="payload.learnedMoves[2]"
+                            (optionSelected)="changeMoveThree($event)" [options]="moveList"></app-auto-complete>
                     </div>
                     <div class="flex flex-row items-center">
                         <label class="text-4xl text-white">move:</label>
-                        <app-auto-complete [selected]="data.moves[3].name" (optionSelected)="changeMoveFour($event)"
-                            [options]="moveList"></app-auto-complete>
+                        <app-auto-complete [selected]="payload.learnedMoves[3]"
+                            (optionSelected)="changeMoveFour($event)" [options]="moveList"></app-auto-complete>
                     </div>
 
 
@@ -46,19 +46,21 @@
                 <div class="flex flex-row gap-4">
                     <div class="flex flex-row items-center">
                         <label class="text-4xl text-white">nature:</label>
-                        <app-auto-complete [selected]="data.natureName" (optionSelected)="changeNature($event)"
+                        <app-auto-complete [selected]="payload.natureName" (optionSelected)="changeNature($event)"
                             [options]="natureList"></app-auto-complete>
 
                     </div>
                     <div class="flex flex-row items-center">
                         <label class="text-4xl text-white">ability:</label>
-                        <app-auto-complete [selected]="data.abilityName" (optionSelected)="changeAbility($event)"
+                        <app-auto-complete [selected]="payload.abilityName" (optionSelected)="changeAbility($event)"
                             [options]="abilityList"></app-auto-complete>
                     </div>
                 </div>
 
 
-                <button (click)="save()"
+                <button *ngIf="!data" (click)="newBuild()"
+                    class="bg-blue-400 w-fit p-2 rounded-lg bg-opacity-60 hover:scale-110 cursor-pointer hover:shadow-md hover:shadow-blue-700 transition duration-200 ease-in-out">Save</button>
+                <button *ngIf="data" (click)="editBuild()"
                     class="bg-blue-400 w-fit p-2 rounded-lg bg-opacity-60 hover:scale-110 cursor-pointer hover:shadow-md hover:shadow-blue-700 transition duration-200 ease-in-out">Save</button>
 
             </div>
@@ -68,7 +70,7 @@
 
 
     </div>
-    <textarea [value]="buildDescription" [(ngModel)]="buildDescription"
+    <textarea [value]="payload.description" [(ngModel)]="payload.description"
         class="text-xl text-center placeholder-red-300 border border-red-400" placeholder="Description"></textarea>
 
 </div>

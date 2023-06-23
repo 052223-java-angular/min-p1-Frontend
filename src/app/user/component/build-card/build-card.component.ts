@@ -12,6 +12,7 @@ import { DeleteBuildPayLoad } from 'src/app/models/DeleteBuildPayload';
 export class BuildCardComponent {
   edit: boolean = false;
   dex: string = '1';
+
   @Input() builds: any;
   public pokemonList: { [index: string]: string } = this.buildServic.pokemonList;
 

@@ -4,6 +4,7 @@ import { PokeAPIService } from 'src/app/pokedex/services/poke-api.service';
 import { BuildService } from '../../service/build.service';
 import { BuildCardComponent } from '../build-card/build-card.component';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { ModifyBuildPayload } from 'src/app/models/ModifyBuildPayload';
 
 
 @Component({
@@ -12,8 +13,6 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./build.component.css'],
 })
 export class BuildComponent {
-  public buildName: string = "";
-  public buildDescription: string = "";
   public option: any;
   public dex: string = "1";
   public pokemon: any = {};
@@ -51,6 +50,7 @@ export class BuildComponent {
 
   payload: BuildPayload = {
     userId: sessionStorage.getItem('id') || '',
+    buildId: '',
     name: '',
     pokemonName: '',
     natureName: '',
@@ -59,7 +59,19 @@ export class BuildComponent {
     learnedMoves: ['', '', '', '']
   }
   constructor(private pokeAPIservice: PokeAPIService, private buildServic: BuildService, public dialogRef: MatDialogRef<BuildCardComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
-    console.log(data)
+    if (data) {
+      console.log(data)
+      this.payload.description = data.description;
+      this.payload.buildId = data.id;
+      this.payload.name = data.name
+      this.payload.pokemonName = data.pokemonName;
+      this.payload.abilityName = data.abilityName;
+      this.payload.natureName = data.natureName;
+      this.payload.learnedMoves[0] = data.moves[0].name;
+      this.payload.learnedMoves[1] = data.moves[1].name;
+      this.payload.learnedMoves[2] = data.moves[2].name;
+      this.payload.learnedMoves[3] = data.moves[3].name;
+    }
   }
 
 
@@ -104,10 +116,24 @@ export class BuildComponent {
   }
 
 
-  save() {
-    this.payload.name = this.buildName;
-    this.payload.description = this.buildDescription;
+  newBuild() {
     this.buildServic.newBuild(this.payload).subscribe({
+      next: comment => {
+        console.log("success");
+        this.dialogRef.close();
+        // Handle the sucsess response
+        // TODO: Add code for handling success response
+      },
+      error: error => {
+        console.log("failed");
+        // Handle the error response
+        // TODO: Add code for handling error response
+      }
+    })
+  }
+
+  editBuild() {
+    this.buildServic.modifyBuild(this.payload).subscribe({
       next: comment => {
         console.log("success");
         this.dialogRef.close();
