@@ -3,6 +3,7 @@ import { UserService } from '../../service/user.service';
 import { User } from 'src/app/models/User';
 import { BuildComponent } from '../build/build.component';
 import { MatDialog } from '@angular/material/dialog';
+import { BuildService } from '../../service/build.service';
 
 @Component({
   selector: 'app-profile',
@@ -11,15 +12,19 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class ProfileComponent {
   user!: User;
-
-  constructor(private userService: UserService, private dialog: MatDialog) {
+  builds: any[] = [];
+  constructor(private userService: UserService, private buildService: BuildService, private dialog: MatDialog) {
 
   }
 
   ngOnInit() {
     this.userService.getUser().subscribe(res => {
       this.user = res;
+
     });
+    this.buildService.getBuilds().subscribe(res => {
+      this.builds = res;
+    })
 
   }
 

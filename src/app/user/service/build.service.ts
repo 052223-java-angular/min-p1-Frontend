@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { BuildPayload } from 'src/app/models/BuildPayload';
@@ -1026,9 +1026,16 @@ export class BuildService {
   httpOptions = {
     headers: new HttpHeaders({
       Authorization: sessionStorage.getItem('token') || ''
-    })
+    }),
+    params: new HttpParams().set('user_id', sessionStorage.getItem('id') || '')
   };
   constructor(private http: HttpClient) { }
+
+  getBuilds(): Observable<any[]> {
+    this.httpOptions.headers = this.httpOptions.headers.set('Authorization', sessionStorage.getItem('token') || '');
+    this.httpOptions.params = this.httpOptions.params.set('user_id', sessionStorage.getItem('id') || '');
+    return this.http.get<any[]>(`${this.baseUrl}/build/`, this.httpOptions);
+  }
 
   newBuild(payload: BuildPayload): Observable<any[]> {
     this.httpOptions.headers = this.httpOptions.headers.set('Authorization', sessionStorage.getItem('token') || '');

@@ -20,7 +20,7 @@ export class BuildCardComponent {
   }
 
   ngOnInit(): void {
-    this.dex = this.pokemonList[this.builds.pokemonName]
+    this.dex = this.pokemonList[this.builds.pokemon]
   }
 
   view(): void {

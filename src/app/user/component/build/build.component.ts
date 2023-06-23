@@ -64,13 +64,14 @@ export class BuildComponent {
       this.payload.description = data.description;
       this.payload.buildId = data.id;
       this.payload.name = data.name
-      this.payload.pokemonName = data.pokemonName;
-      this.payload.abilityName = data.abilityName;
-      this.payload.natureName = data.natureName;
+      this.payload.pokemonName = data.pokemon;
+      this.payload.abilityName = data.ability;
+      this.payload.natureName = data.nature;
       this.payload.learnedMoves[0] = data.moves[0].name;
       this.payload.learnedMoves[1] = data.moves[1].name;
       this.payload.learnedMoves[2] = data.moves[2].name;
       this.payload.learnedMoves[3] = data.moves[3].name;
+      this.dex = this.pokemonList[data.pokemon];
     }
   }
 
