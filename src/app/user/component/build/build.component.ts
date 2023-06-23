@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { BuildPayload } from 'src/app/models/BuildPayload';
 import { PokeAPIService } from 'src/app/pokedex/services/poke-api.service';
 import { BuildService } from '../../service/build.service';
 import { BuildCardComponent } from '../build-card/build-card.component';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 
 @Component({
@@ -58,7 +58,9 @@ export class BuildComponent {
     description: '',
     learnedMoves: ['', '', '', '']
   }
-  constructor(private pokeAPIservice: PokeAPIService, private buildServic: BuildService, public dialogRef: MatDialogRef<BuildCardComponent>) { }
+  constructor(private pokeAPIservice: PokeAPIService, private buildServic: BuildService, public dialogRef: MatDialogRef<BuildCardComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
+    console.log(data)
+  }
 
 
   getPokemon(dex: string): void {

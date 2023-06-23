@@ -1,5 +1,9 @@
 <div class="flex flex-col justify-center w-fit bg-slate-300 p-3 rounded-lg">
-    <div class="text-center">{{builds.name}}</div>
+    <div class="flex justify-between">
+        <div class="text-center">{{builds.name}}</div>
+        <button (click)="deleteBuild()">X</button>
+    </div>
+
 
     <img (click)="view()" class="object-contain"
         src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{{dex}}.png"

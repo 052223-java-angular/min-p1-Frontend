@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { BuildPayload } from 'src/app/models/BuildPayload';
+import { DeleteBuildPayLoad } from 'src/app/models/DeleteBuildPayload';
 
 @Injectable({
   providedIn: 'root'
@@ -1031,5 +1032,9 @@ export class BuildService {
   newBuild(payload: BuildPayload): Observable<any[]> {
     this.httpOptions.headers = this.httpOptions.headers.set('Authorization', sessionStorage.getItem('token') || '');
     return this.http.post<any[]>(`${this.baseUrl}/build/create`, payload, this.httpOptions);
+  }
+  deleteBuild(payload: DeleteBuildPayLoad): Observable<any> {
+    this.httpOptions.headers = this.httpOptions.headers.set('Authorization', sessionStorage.getItem('token') || '');
+    return this.http.post<any[]>(`${this.baseUrl}/build/delete`, payload, this.httpOptions);
   }
 }

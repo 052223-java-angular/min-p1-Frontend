@@ -25,6 +25,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 export class AutoCompleteComponent implements OnInit {
   myControl = new FormControl('');
   @Input() options: string[] = [];
+  @Input() selected?: string;
   @Output() optionSelected = new EventEmitter();// emits the option selected
   filteredOptions?: Observable<string[]>;
 
