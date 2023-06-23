@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-build-card',
@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./build-card.component.css']
 })
 export class BuildCardComponent {
-
+  dex: string = '1';
+  @Input() builds: any;
 }

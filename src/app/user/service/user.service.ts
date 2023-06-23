@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Auth } from 'src/app/models/Auth';
@@ -13,6 +13,11 @@ import { User } from 'src/app/models/User'
 })
 export class UserService {
   baseUrl = 'http://localhost:8080/pokemon/api';
+  httpOptions = {
+    headers: new HttpHeaders({
+      Authorization: sessionStorage.getItem('token') || ''
+    })
+  };
 
   constructor(private http: HttpClient) { }
 
@@ -27,7 +32,9 @@ export class UserService {
   }
 
   getUser(): Observable<User> {
-    return this.http.get<User>(`${this.baseUrl}/auth/${sessionStorage.getItem('id')}`);
+    this.httpOptions.headers = this.httpOptions.headers.set('Authorization', sessionStorage.getItem('token') || '');
+
+    return this.http.get<User>(`${this.baseUrl}/auth/${sessionStorage.getItem('id')}`, this.httpOptions);
   }
 
   samePasswordValidator(

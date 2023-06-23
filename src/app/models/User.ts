@@ -1,3 +1,13 @@
 export interface User {
-    userId: string;
+    id: string,
+    username: string,
+    email: string,
+    signature: string,
+    postVotes: [],
+    commentVotes: [],
+    comments: [],
+    posts: [],
+    teams: [],
+    builds: []
+
 }

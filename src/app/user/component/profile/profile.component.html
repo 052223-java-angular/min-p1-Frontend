@@ -1,20 +1,20 @@
 <div class="grid grid-rows-5 h-screen w-screen">
     <div class="grid grid-cols-3 row-span-1 w-full">
         <div class="bg-slate-300 col-span-1">
-            Username:
-            Email:
+            {{user.username}}
+            {{user.email}}
             Picture:
         </div>
         <div class="bg-slate-400 col-span-2 w-full">
-            signature:
-            Build #:
-            Teams #:
-            Post #:
-            Comment #:
+            {{user.signature}}
+            {{user.builds.length}}
+            {{user.teams.length}}
+            {{user.posts.length}}
+            {{user.comments.length}}
         </div>
     </div>
-    <div class="bg-slate-500 row-span-2">
-        builds
+    <div class="bg-slate-500 row-span-2 flex">
+        <app-build-card *ngFor="let build of user.builds" [builds]="build"></app-build-card>
     </div>
     <div class="bg-slate-700 row-span-2">
         teams
