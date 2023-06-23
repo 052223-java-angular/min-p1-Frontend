@@ -1,14 +1,15 @@
-import { Component, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { BuildPayload } from 'src/app/models/BuildPayload';
 import { PokeAPIService } from 'src/app/pokedex/services/poke-api.service';
-
-
+import { BuildService } from '../../service/build.service';
 @Component({
   selector: 'app-build',
   templateUrl: './build.component.html',
   styleUrls: ['./build.component.css'],
 })
 export class BuildComponent {
+  public buildName: string = "";
+  public buildDescription: string = "";
   public option: any;
   public dex: string = "1";
   public pokemon: any = {};
@@ -1054,7 +1055,17 @@ export class BuildComponent {
   ];
   public abilityList = [];
   public moveList = [];
-  constructor(private pokeAPIservice: PokeAPIService) { }
+
+  payload: BuildPayload = {
+    userId: sessionStorage.getItem('id') || '',
+    name: '',
+    pokemonName: '',
+    natureName: '',
+    abilityName: '',
+    description: '',
+    learnedMoves: ['', '', '', '']
+  }
+  constructor(private pokeAPIservice: PokeAPIService, private buildServic: BuildService) { }
 
 
   getPokemon(dex: string): void {
@@ -1063,25 +1074,55 @@ export class BuildComponent {
         this.pokemon = data;
         this.abilityList = this.pokemon.abilities.map((ability: { ability: any; }) => ability.ability.name);
         this.moveList = this.pokemon.moves.map((move: { move: any; }) => move.move.name);
-        console.log(this.moveList);
       }
     );
   }
 
   changeInfo(name: string) {
+    this.payload.pokemonName = name;
     this.dex = this.pokemonList[name];
     this.getPokemon(this.dex);
   }
 
+  changeNature(nature: string) {
+    this.payload.natureName = nature.replace('-', ' ');
+  }
+
+  changeAbility(ability: string) {
+    this.payload.abilityName = ability.replace('-', ' ');
+  }
+
+  changeMoveOne(move: string) {
+    this.payload.learnedMoves[0] = move.replace('-', ' ');
+  }
+
+  changeMoveTwo(move: string) {
+    this.payload.learnedMoves[1] = move.replace('-', ' ');
+  }
+
+  changeMoveThree(move: string) {
+    this.payload.learnedMoves[2] = move.replace('-', ' ');
+  }
+
+  changeMoveFour(move: string) {
+    this.payload.learnedMoves[3] = move.replace('-', ' ');
+  }
+
+
   save() {
-    const payload: BuildPayload = {
-      userId: '',
-      name: '',
-      pokemonName: '',
-      natureName: '',
-      abilityName: '',
-      description: '',
-      learnedMoves: ['']
-    }
+    this.payload.name = this.buildName;
+    this.payload.description = this.buildDescription;
+    this.buildServic.newBuild(this.payload).subscribe({
+      next: comment => {
+        console.log("success");
+        // Handle the sucsess response
+        // TODO: Add code for handling success response
+      },
+      error: error => {
+        console.log("failed");
+        // Handle the error response
+        // TODO: Add code for handling error response
+      }
+    })
   }
 }

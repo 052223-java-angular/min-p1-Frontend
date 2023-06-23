@@ -22,7 +22,7 @@ import { BuildComponent } from './user/component/build/build.component';
 import { TeamCardsComponent } from './user/component/team-cards/team-cards.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AutoCompleteComponent } from './utility/auto-complete/auto-complete.component';
-
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,6 +41,7 @@ import { AutoCompleteComponent } from './utility/auto-complete/auto-complete.com
     CommentCardComponent,
     BuildComponent,
     TeamCardsComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -48,7 +49,8 @@ import { AutoCompleteComponent } from './utility/auto-complete/auto-complete.com
     HttpClientModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    AutoCompleteComponent
+    AutoCompleteComponent,
+    FormsModule
 
   ],
   providers: [],

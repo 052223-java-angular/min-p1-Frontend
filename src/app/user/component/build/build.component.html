@@ -1,49 +1,73 @@
-<div class=" bg-gray-800 flex flex-row rounded-lg shadow-outline min-w-[230px] shadow-md shadow-slate-300 text-black">
-    <div>
-        <div class="flex flex-row items-center">
-            <label>pokemon:</label>
-            <app-auto-complete (optionSelected)="changeInfo($event)" [options]="nameList"></app-auto-complete>
-
-        </div>
-
-        <img class="object-contain"
-            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{{dex}}.png"
-            alt="{{dex}} sprite" />
-        <div class="flex flex-row">
+<div class="flex flex-col justify-center w-fit">
+    <input [value]="buildName" [(ngModel)]="buildName"
+        class="text-5xl text-center placeholder-red-300 border border-red-400" placeholder="BUILD NAME" type="text">
+    <div
+        class="p-3 bg-gray-800 flex flex-row rounded-lg shadow-outline min-w-[230px] shadow-md shadow-slate-300 text-black">
+        <div>
             <div class="flex flex-row items-center">
-                <label>nature:</label>
-                <app-auto-complete [options]="natureList"></app-auto-complete>
+                <label class="text-4xl text-white">pokemon: </label>
+                <app-auto-complete (optionSelected)="changeInfo($event)" [options]="nameList"></app-auto-complete>
 
             </div>
-            <div class="flex flex-row items-center">
-                <label>ability:</label>
-                <app-auto-complete [options]="abilityList"></app-auto-complete>
+
+            <div class="flex flex-row">
+                <img class="object-contain"
+                    src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{{dex}}.png"
+                    alt="{{dex}} sprite" />
+                <div class="text-center w-1/2  flex flex-col">
+                    <div class="flex flex-row items-center">
+                        <label class="text-4xl text-white">move:</label>
+                        <app-auto-complete (optionSelected)="changeMoveOne($event)"
+                            [options]="moveList"></app-auto-complete>
+                    </div>
+
+                    <div class="flex flex-row items-center">
+                        <label class="text-4xl text-white">move:</label>
+                        <app-auto-complete (optionSelected)="changeMoveTwo($event)"
+                            [options]="moveList"></app-auto-complete>
+                    </div>
+                    <div class="flex flex-row items-center">
+                        <label class="text-4xl text-white">move:</label>
+                        <app-auto-complete (optionSelected)="changeMoveThree($event)"
+                            [options]="moveList"></app-auto-complete>
+                    </div>
+                    <div class="flex flex-row items-center">
+                        <label class="text-4xl text-white">move:</label>
+                        <app-auto-complete (optionSelected)="changeMoveFour($event)"
+                            [options]="moveList"></app-auto-complete>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <div class="flex flex-row justify-between items-center">
+                <div class="flex flex-row gap-4">
+                    <div class="flex flex-row items-center">
+                        <label class="text-4xl text-white">nature:</label>
+                        <app-auto-complete (optionSelected)="changeNature($event)"
+                            [options]="natureList"></app-auto-complete>
+
+                    </div>
+                    <div class="flex flex-row items-center">
+                        <label class="text-4xl text-white">ability:</label>
+                        <app-auto-complete (optionSelected)="changeAbility($event)"
+                            [options]="abilityList"></app-auto-complete>
+                    </div>
+                </div>
+
+
+                <button (click)="save()"
+                    class="bg-blue-400 w-fit p-2 rounded-lg bg-opacity-60 hover:scale-110 cursor-pointer hover:shadow-md hover:shadow-blue-700 transition duration-200 ease-in-out">Save</button>
+
             </div>
 
         </div>
 
-    </div>
-
-    <div class="text-center w-1/2  flex flex-col">
-        <div class="flex flex-row items-center">
-            <label>move:</label>
-            <app-auto-complete [options]="moveList"></app-auto-complete>
-        </div>
-
-        <div class="flex flex-row items-center">
-            <label>move:</label>
-            <app-auto-complete [options]="moveList"></app-auto-complete>
-        </div>
-        <div class="flex flex-row items-center">
-            <label>move:</label>
-            <app-auto-complete [options]="moveList"></app-auto-complete>
-        </div>
-        <div class="flex flex-row items-center">
-            <label>move:</label>
-            <app-auto-complete [options]="moveList"></app-auto-complete>
-        </div>
 
 
     </div>
-    <button (click)="save()">Save</button>
+    <textarea [value]="buildDescription" [(ngModel)]="buildDescription"
+        class="text-xl text-center placeholder-red-300 border border-red-400" placeholder="Description"></textarea>
+
 </div>
