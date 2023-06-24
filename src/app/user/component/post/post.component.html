@@ -24,7 +24,8 @@
     <div class="grid grid-cols-10">
         <div class="col-span-1"></div>
         <div class="col-span-9 flex flex-col gap-2">
-            <app-comment-card *ngFor="let comment of post.comments" [comment]="comment"></app-comment-card>
+            <app-comment-card (getPost)="getPost()" *ngFor="let comment of post.comments"
+                [comment]="comment"></app-comment-card>
         </div>
     </div>
     <button (click)="newCommentClick()">New Comment</button>

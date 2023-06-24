@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PostService } from '../../service/post.service';
 import { ModifyCommentPayload } from 'src/app/models/ModifyCommentPayload';
@@ -18,7 +18,7 @@ export class CommentCardComponent {
   up: number = 0;
   down: number = 0;
   voted: boolean[] = [false, false];
-
+  @Output("getPost") getPost: EventEmitter<any> = new EventEmitter();
   constructor(private postService: PostService, private dialog: MatDialog) {
   }
 
@@ -30,7 +30,7 @@ export class CommentCardComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-
+      this.getPost.emit();
     });
   }
 
