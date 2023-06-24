@@ -4,6 +4,8 @@ import { User } from 'src/app/models/User';
 import { BuildComponent } from '../build/build.component';
 import { MatDialog } from '@angular/material/dialog';
 import { BuildService } from '../../service/build.service';
+import { TeamComponent } from '../team/team.component';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-profile',
@@ -18,14 +20,18 @@ export class ProfileComponent {
   }
 
   ngOnInit() {
-    this.userService.getUser().subscribe(res => {
+    this.userService.getUser().pipe(take(1)).subscribe(res => {
       this.user = res;
 
     });
-    this.buildService.getBuilds().subscribe(res => {
+    this.getBuilds();
+
+  }
+
+  getBuilds() {
+    this.buildService.getBuilds().pipe(take(1)).subscribe(res => {
       this.builds = res;
     })
-
   }
 
   newBuild() {
@@ -34,6 +40,17 @@ export class ProfileComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      this.getBuilds();
+    });
+  }
+
+  newTeam() {
+    const dialogRef = this.dialog.open(TeamComponent, {
+      data: null,
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+
       console.log('The dialog was closed');
 
     });

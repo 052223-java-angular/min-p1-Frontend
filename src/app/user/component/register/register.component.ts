@@ -3,6 +3,7 @@ import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from
 import { UserService } from "../../service/user.service";
 import { RegisterPayload } from "src/app/models/RegisterPayload";
 import { Router } from "@angular/router";
+import { take } from "rxjs";
 
 @Component({
   selector: 'app-register',
@@ -49,7 +50,7 @@ export class RegisterComponent {
       confirmedPassword: this.formGroup.controls['confirmedPassword'].value,
     };
 
-    this.userService.register(payload).subscribe({
+    this.userService.register(payload).pipe(take(1)).subscribe({
       next: value => {
         this.router.navigate(['/login'])
       },

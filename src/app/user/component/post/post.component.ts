@@ -6,6 +6,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommentPayload } from 'src/app/models/CommentPayload';
 import { ModifyPostPayload } from 'src/app/models/ModifyPostPayload';
 import { PostVotePayload } from 'src/app/models/PostVotePayload';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-post',
@@ -39,7 +40,7 @@ export class PostComponent {
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
       this.id = params['postId'];
-      this.postService.getPost(this.id).subscribe(res => {
+      this.postService.getPost(this.id).pipe(take(1)).subscribe(res => {
         this.post = res;
         this.up = this.post.votes.filter(vote => vote['vote']).length;
         this.down = this.post.votes.length - this.up;
@@ -66,7 +67,7 @@ export class PostComponent {
       postId: this.id
     };
 
-    this.postService.newComment(payload).subscribe({
+    this.postService.newComment(payload).pipe(take(1)).subscribe({
       next: comment => {
         console.log("success");
         // Handle the sucsess response
@@ -93,8 +94,8 @@ export class PostComponent {
       userId: sessionStorage.getItem('id') || '',
       postId: this.id
     };
-    console.log("here");
-    this.postService.modifyPost(payload).subscribe({
+
+    this.postService.modifyPost(payload).pipe(take(1)).subscribe({
       next: post => {
         console.log("success");
         // Handle the sucsess response
@@ -124,7 +125,7 @@ export class PostComponent {
       userId: sessionStorage.getItem('id') || '',
       postId: this.post.id
     };
-    this.postService.votePost(payload).subscribe({
+    this.postService.votePost(payload).pipe(take(1)).subscribe({
       next: ele => {
         if (this.voted[0] && this.voted[1]) {
           this.voted = [false, false]
@@ -152,7 +153,7 @@ export class PostComponent {
       userId: sessionStorage.getItem('id') || '',
       postId: this.post.id
     };
-    this.postService.votePost(payload).subscribe({
+    this.postService.votePost(payload).pipe(take(1)).subscribe({
       next: ele => {
         if (this.voted[0] && !this.voted[1]) {
           this.voted = [false, false]

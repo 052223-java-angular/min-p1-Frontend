@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PokeAPIService } from '../../services/poke-api.service';
+import { take } from 'rxjs';
 
 
 @Component({
@@ -20,11 +21,11 @@ export class PokemonInfoComponent {
   constructor(private activatedRoute: ActivatedRoute, private pokeAPIservice: PokeAPIService) { }
 
   getPokemon(dex: string): void {
-    this.pokeAPIservice.getPokemonByDex(dex).subscribe(data => this.pokemon = data);
+    this.pokeAPIservice.getPokemonByDex(dex).pipe(take(1)).subscribe(data => this.pokemon = data);
   }
 
   getPokemonSpecie(dex: string): void {
-    this.pokeAPIservice.getPokemonSpeciesByDex(dex).subscribe(data => {
+    this.pokeAPIservice.getPokemonSpeciesByDex(dex).pipe(take(1)).subscribe(data => {
       this.pokemonSpecie = data
       this.getEvolutionChain(this.pokemonSpecie.evolution_chain.url);
       this.getForms();
@@ -32,7 +33,7 @@ export class PokemonInfoComponent {
   }
 
   getEvolutionChain(url: string): void {
-    this.pokeAPIservice.getEvolutionChain(url).subscribe(data => {
+    this.pokeAPIservice.getEvolutionChain(url).pipe(take(1)).subscribe(data => {
       this.evolutionChain = data;
       this.evolutionFamily.push({
         dex: this.parseUrlForDex(this.evolutionChain.chain.species.url),

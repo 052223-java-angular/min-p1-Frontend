@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PostService } from '../../service/post.service';
 import { ModifyCommentPayload } from 'src/app/models/ModifyCommentPayload';
 import { CommentVotePayload } from 'src/app/models/CommentVotePayload';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-comment-card',
@@ -36,7 +37,7 @@ export class CommentCardComponent {
       commentId: this.comment.id
     };
 
-    this.postService.modifyComment(payload).subscribe({
+    this.postService.modifyComment(payload).pipe(take(1)).subscribe({
       next: comment => {
         console.log("success");
         // Handle the sucsess response
@@ -62,7 +63,7 @@ export class CommentCardComponent {
       userId: sessionStorage.getItem('id') || '',
       commentId: this.comment.id
     };
-    this.postService.voteComment(payload).subscribe({
+    this.postService.voteComment(payload).pipe(take(1)).subscribe({
       next: ele => {
 
         if (this.voted[0] && this.voted[1]) {
@@ -91,7 +92,7 @@ export class CommentCardComponent {
       userId: sessionStorage.getItem('id') || '',
       commentId: this.comment.id
     };
-    this.postService.voteComment(payload).subscribe({
+    this.postService.voteComment(payload).pipe(take(1)).subscribe({
       next: ele => {
         if (this.voted[0] && !this.voted[1]) {
           this.voted = [false, false]

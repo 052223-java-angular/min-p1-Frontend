@@ -3,6 +3,7 @@ import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/fo
 import { UserService } from '../../service/user.service';
 import { Router } from '@angular/router';
 import { LoginPayload } from 'src/app/models/LoginPayload';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -34,7 +35,7 @@ export class LoginComponent {
       password: this.formGroup.controls['password'].value,
     };
 
-    this.userService.login(payload).subscribe({
+    this.userService.login(payload).pipe(take(1)).subscribe({
       next: principal => {
         sessionStorage.setItem('id', principal.id);
         sessionStorage.setItem('username', principal.username);

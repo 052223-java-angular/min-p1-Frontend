@@ -5,6 +5,7 @@ import { BuildService } from '../../service/build.service';
 import { BuildCardComponent } from '../build-card/build-card.component';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ModifyBuildPayload } from 'src/app/models/ModifyBuildPayload';
+import { take } from 'rxjs';
 
 
 @Component({
@@ -60,7 +61,6 @@ export class BuildComponent {
   }
   constructor(private pokeAPIservice: PokeAPIService, private buildServic: BuildService, public dialogRef: MatDialogRef<BuildCardComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
     if (data) {
-      console.log(data)
       this.payload.description = data.description;
       this.payload.buildId = data.id;
       this.payload.name = data.name
@@ -77,7 +77,7 @@ export class BuildComponent {
 
 
   getPokemon(dex: string): void {
-    this.pokeAPIservice.getPokemonByDex(dex).subscribe(
+    this.pokeAPIservice.getPokemonByDex(dex).pipe(take(1)).subscribe(
       data => {
         this.pokemon = data;
         this.abilityList = this.pokemon.abilities.map((ability: { ability: any; }) => ability.ability.name);
@@ -93,32 +93,32 @@ export class BuildComponent {
   }
 
   changeNature(nature: string) {
-    this.payload.natureName = nature.replace('-', ' ');
+    this.payload.natureName = nature;
   }
 
   changeAbility(ability: string) {
-    this.payload.abilityName = ability.replace('-', ' ');
+    this.payload.abilityName = ability;
   }
 
   changeMoveOne(move: string) {
-    this.payload.learnedMoves[0] = move.replace('-', ' ');
+    this.payload.learnedMoves[0] = move;
   }
 
   changeMoveTwo(move: string) {
-    this.payload.learnedMoves[1] = move.replace('-', ' ');
+    this.payload.learnedMoves[1] = move;
   }
 
   changeMoveThree(move: string) {
-    this.payload.learnedMoves[2] = move.replace('-', ' ');
+    this.payload.learnedMoves[2] = move;
   }
 
   changeMoveFour(move: string) {
-    this.payload.learnedMoves[3] = move.replace('-', ' ');
+    this.payload.learnedMoves[3] = move;
   }
 
 
   newBuild() {
-    this.buildServic.newBuild(this.payload).subscribe({
+    this.buildServic.newBuild(this.payload).pipe(take(1)).subscribe({
       next: comment => {
         console.log("success");
         this.dialogRef.close();
@@ -134,7 +134,7 @@ export class BuildComponent {
   }
 
   editBuild() {
-    this.buildServic.modifyBuild(this.payload).subscribe({
+    this.buildServic.modifyBuild(this.payload).pipe(take(1)).subscribe({
       next: comment => {
         console.log("success");
         this.dialogRef.close();

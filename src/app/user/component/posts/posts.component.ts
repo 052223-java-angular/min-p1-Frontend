@@ -3,6 +3,7 @@ import { PostService } from '../../service/post.service';
 import { Post } from 'src/app/models/Post';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PostPayload } from 'src/app/models/PostPayload';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-posts',
@@ -21,7 +22,7 @@ export class PostsComponent {
   }
 
   ngOnInit() {
-    this.postService.getPosts().subscribe(res => {
+    this.postService.getPosts().pipe(take(1)).subscribe(res => {
       this.posts = res;
     });
   }
@@ -37,7 +38,7 @@ export class PostsComponent {
       userId: sessionStorage.getItem('id') || ''
     };
 
-    this.postService.newPost(payload).subscribe({
+    this.postService.newPost(payload).pipe(take(1)).subscribe({
       next: post => {
         console.log("success");
         // Handle the sucsess response
