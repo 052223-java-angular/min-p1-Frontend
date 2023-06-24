@@ -26,7 +26,7 @@ export class PostComponent {
   user: string = sessionStorage.getItem('username') || '';
   up: number = 0;
   down: number = 0;
-  voted: boolean[] = [false, false];
+  voted: boolean | undefined;
 
   constructor(private fb: FormBuilder, private activatedRoute: ActivatedRoute, private postService: PostService, private dialog: MatDialog) {
 
@@ -46,8 +46,7 @@ export class PostComponent {
         this.down = this.post.votes.length - this.up;
         this.post.votes.forEach(vote => {
           if (vote['username'] == sessionStorage.getItem('username')) {
-            this.voted[0] = true;
-            this.voted[1] = vote['vote'];
+            this.voted = vote['vote'];
           }
         });
       });
@@ -84,13 +83,13 @@ export class PostComponent {
     };
     this.postService.votePost(payload).pipe(take(1)).subscribe({
       next: ele => {
-        if (this.voted[0] && this.voted[1]) {
-          this.voted = [false, false]
+        if (this.voted) {
+          this.voted = undefined
           this.up--;
         } else {
-          if (this.voted[0]) this.down--;
+          if (this.voted) this.down--;
           this.up++;
-          this.voted = [true, true]
+          this.voted = true
         }
         console.log("success");
         // Handle the sucsess response
@@ -112,13 +111,13 @@ export class PostComponent {
     };
     this.postService.votePost(payload).pipe(take(1)).subscribe({
       next: ele => {
-        if (this.voted[0] && !this.voted[1]) {
-          this.voted = [false, false]
+        if (this.voted == false) {
+          this.voted = undefined
           this.down--;
         } else {
-          if (this.voted[0]) this.up--;
+          if (this.voted) this.up--;
           this.down++;
-          this.voted = [true, false]
+          this.voted = false
         }
 
         console.log("success");

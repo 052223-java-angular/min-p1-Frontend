@@ -17,7 +17,7 @@ export class CommentCardComponent {
   user: string = sessionStorage.getItem('username') || '';
   up: number = 0;
   down: number = 0;
-  voted: boolean[] = [false, false];
+  voted: boolean | undefined;
   @Output("getPost") getPost: EventEmitter<any> = new EventEmitter();
   constructor(private postService: PostService, private dialog: MatDialog) {
   }
@@ -43,13 +43,13 @@ export class CommentCardComponent {
     this.postService.voteComment(payload).pipe(take(1)).subscribe({
       next: ele => {
 
-        if (this.voted[0] && this.voted[1]) {
-          this.voted = [false, false]
+        if (this.voted) {
+          this.voted = undefined
           this.up--;
         } else {
-          if (this.voted[0]) this.down--;
+          if (this.voted) this.down--;
           this.up++;
-          this.voted = [true, true]
+          this.voted = true
         }
         console.log("success");
         // Handle the sucsess response
@@ -71,13 +71,13 @@ export class CommentCardComponent {
     };
     this.postService.voteComment(payload).pipe(take(1)).subscribe({
       next: ele => {
-        if (this.voted[0] && !this.voted[1]) {
-          this.voted = [false, false]
+        if (this.voted == false) {
+          this.voted = undefined
           this.down--;
         } else {
-          if (this.voted[0]) this.up--;
+          if (this.voted) this.up--;
           this.down++;
-          this.voted = [true, false]
+          this.voted = false
         }
         console.log("success");
         // Handle the sucsess response
@@ -97,8 +97,7 @@ export class CommentCardComponent {
 
     this.comment.commentVotes.forEach((vote: { [x: string]: any; }) => {
       if (vote['username'] == sessionStorage.getItem('username')) {
-        this.voted[0] = true;
-        this.voted[1] = vote['vote'];
+        this.voted = vote['vote'];
       }
     });
   }
