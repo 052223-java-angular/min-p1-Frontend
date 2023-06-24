@@ -23,7 +23,7 @@ export class TeamComponent {
     teamId: '',
     name: '',
     description: '',
-    builds: ['', '', '', '', '', '']
+    builds: []
   }
 
   constructor(private buildService: BuildService, private teamService: TeamService, public dialogRef: MatDialogRef<BuildCardComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
