@@ -26,6 +26,7 @@ export class AutoCompleteComponent implements OnInit {
   myControl = new FormControl('');
   @Input() options: string[] = [];
   @Input() selected?: string;
+  @Input() nameMap: any;
   @Output() optionSelected = new EventEmitter();// emits the option selected
   filteredOptions?: Observable<string[]>;
 
