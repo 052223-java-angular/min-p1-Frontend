@@ -2,6 +2,9 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { TeamService } from '../../service/team.service';
 import { MatDialog } from '@angular/material/dialog';
 import { TeamComponent } from '../team/team.component';
+import { DeleteTeamPayLoad } from 'src/app/models/DeleteTeamPayload';
+import { take } from 'rxjs';
+import { BuildService } from '../../service/build.service';
 
 @Component({
   selector: 'app-team-cards',
@@ -9,13 +12,27 @@ import { TeamComponent } from '../team/team.component';
   styleUrls: ['./team-cards.component.css']
 })
 export class TeamCardsComponent {
-  @Input() teams: any;
+  dexes: string[] = [];
+  buildList: any = {};
+  @Input() team: any;
+  @Input() builds: any;
   @Output("getTeams") getTeams: EventEmitter<any> = new EventEmitter();
-  constructor(private teamService: TeamService, private dialog: MatDialog) { }
+  public pokemonList: { [index: string]: string } = this.buildService.pokemonList;
+
+  constructor(private teamService: TeamService, private buildService: BuildService, private dialog: MatDialog) { }
+  ngOnInit(): void {
+    this.builds.forEach((build: any) => {
+      this.buildList[build.id] = build.pokemon;
+    })
+    this.team.builds.forEach((build: any) => {
+      this.dexes.push(this.pokemonList[this.buildList[build.id]])
+    })
+  }
+
 
   view(): void {
     const dialogRef = this.dialog.open(TeamComponent, {
-      data: this.teams,
+      data: this.team,
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -26,7 +43,24 @@ export class TeamCardsComponent {
 
   }
   deleteTeam() {
+    const payload: DeleteTeamPayLoad = {
+      userId: sessionStorage.getItem('id') || '',
+      teamId: this.team.id
+    };
 
+    this.teamService.deleteTeam(payload).pipe(take(1)).subscribe({
+      next: comment => {
+        this.getTeams.emit();
+        console.log("success");
+        // Handle the sucsess response
+        // TODO: Add code for handling success response
+      },
+      error: error => {
+        console.log("failed");
+        // Handle the error response
+        // TODO: Add code for handling error response
+      }
+    })
   }
 
 }

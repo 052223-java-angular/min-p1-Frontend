@@ -19,6 +19,7 @@
     </div>
     <div class="bg-slate-700 row-span-2 grid grid-cols-5 items-center gap-2">
         <Button (click)="newTeam()" class="text-9xl border-2 border-white p-2">+</Button>
-        <app-team-cards (getTeams)="getTeams()" *ngFor="let team of teams" [teams]="team"></app-team-cards>
+        <app-team-cards (getTeams)="getTeams()" *ngFor="let team of teams" [team]="team"
+            [builds]="builds"></app-team-cards>
     </div>
 </div>

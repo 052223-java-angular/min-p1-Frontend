@@ -27,6 +27,7 @@ export class ProfileComponent {
 
     });
     this.getBuilds();
+    this.getTeams();
 
   }
 

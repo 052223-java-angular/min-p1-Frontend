@@ -15,9 +15,9 @@ export class BuildCardComponent {
 
   @Input() builds: any;
   @Output("getBuilds") getBuilds: EventEmitter<any> = new EventEmitter();
-  public pokemonList: { [index: string]: string } = this.buildServic.pokemonList;
+  public pokemonList: { [index: string]: string } = this.buildService.pokemonList;
 
-  constructor(private buildServic: BuildService, private dialog: MatDialog) {
+  constructor(private buildService: BuildService, private dialog: MatDialog) {
   }
 
   ngOnInit(): void {
@@ -43,7 +43,7 @@ export class BuildCardComponent {
       buildId: this.builds.id
     };
 
-    this.buildServic.deleteBuild(payload).pipe(take(1)).subscribe({
+    this.buildService.deleteBuild(payload).pipe(take(1)).subscribe({
       next: comment => {
         this.getBuilds.emit();
         console.log("success");
