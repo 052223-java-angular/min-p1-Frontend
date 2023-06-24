@@ -95,10 +95,12 @@ export class CommentCardComponent {
     this.up = this.comment.commentVotes.filter((vote: { [x: string]: any; }) => vote['vote']).length;
     this.down = this.comment.commentVotes.length - this.up;
 
-    this.comment.commentVotes.forEach((vote: { [x: string]: any; }) => {
+    for (let vote of this.comment.commentVotes) {
       if (vote['username'] == sessionStorage.getItem('username')) {
         this.voted = vote['vote'];
+        break
       }
-    });
+    }
+
   }
 }

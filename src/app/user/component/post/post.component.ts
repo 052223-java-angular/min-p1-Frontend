@@ -44,11 +44,12 @@ export class PostComponent {
         this.post = res;
         this.up = this.post.votes.filter(vote => vote['vote']).length;
         this.down = this.post.votes.length - this.up;
-        this.post.votes.forEach(vote => {
+        for (let vote of this.post.votes) {
           if (vote['username'] == sessionStorage.getItem('username')) {
             this.voted = vote['vote'];
+            break
           }
-        });
+        }
       });
 
     });
