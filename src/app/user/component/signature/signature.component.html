@@ -1,0 +1,7 @@
+<div mat-dialog-content>
+    <textarea [value]="payload.signature" [(ngModel)]="payload.signature" cols="30" rows="10"></textarea>
+    <div class="flex justify-end">
+        <button (click)="saveSignature()"
+            class="bg-blue-400 w-fit p-2 rounded-lg bg-opacity-60 hover:scale-110 cursor-pointer hover:shadow-md hover:shadow-blue-700 transition duration-200 ease-in-out">Save</button>
+    </div>
+</div>

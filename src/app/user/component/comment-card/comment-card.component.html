@@ -17,25 +17,7 @@
         <div>last edit on {{comment.edit_time}}</div>
 
         <button *ngIf="user==comment.username" (click)="modifyCommentClick()">Edit Comment</button>
-        <form *ngIf="modifyCommentC"
-            class=" p-5 h-auto flex flex-col justify-between rounded-xl shadow-xl shadow-yellow-600"
-            [formGroup]="formGroup" (ngSubmit)="modifyComment()">
 
-            <label class="rounded-sm text-yellow-700 bg-opacity-60">
-                Comment:
-
-            </label>
-            <textarea rows="5" cols="33" class="bg-slate-300 mt-5" formControlName="comment"></textarea>
-
-
-
-            <div class="flex justify-end">
-                <button
-                    class="bg-blue-400 w-fit p-2 rounded-lg bg-opacity-60 hover:scale-110 cursor-pointer hover:shadow-md hover:shadow-blue-700 transition duration-200 ease-in-out"
-                    type="submit" [disabled]="formGroup.invalid">Submit</button>
-            </div>
-
-        </form>
 
     </div>
 

@@ -24,6 +24,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AutoCompleteComponent } from './utility/auto-complete/auto-complete.component';
 import { FormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
+import { SignatureComponent } from './user/component/signature/signature.component';
+import { PostFormComponent } from './user/component/post-form/post-form.component';
+import { CommentFormComponent } from './user/component/comment-form/comment-form.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,6 +45,9 @@ import { MatDialogModule } from '@angular/material/dialog';
     CommentCardComponent,
     BuildComponent,
     TeamCardsComponent,
+    SignatureComponent,
+    PostFormComponent,
+    CommentFormComponent,
 
   ],
   imports: [

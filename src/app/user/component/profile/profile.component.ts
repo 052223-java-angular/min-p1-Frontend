@@ -7,6 +7,7 @@ import { BuildService } from '../../service/build.service';
 import { TeamComponent } from '../team/team.component';
 import { take } from 'rxjs';
 import { TeamService } from '../../service/team.service';
+import { SignatureComponent } from '../signature/signature.component';
 
 @Component({
   selector: 'app-profile',
@@ -22,13 +23,15 @@ export class ProfileComponent {
   }
 
   ngOnInit() {
-    this.userService.getUser().pipe(take(1)).subscribe(res => {
-      this.user = res;
-
-    });
+    this.getUser();
     this.getBuilds();
     this.getTeams();
 
+  }
+  getUser() {
+    this.userService.getUser().pipe(take(1)).subscribe(res => {
+      this.user = res;
+    });
   }
 
   getBuilds() {
@@ -60,6 +63,16 @@ export class ProfileComponent {
 
     dialogRef.afterClosed().subscribe(result => {
       this.getTeams();
+    });
+  }
+
+  editSignature() {
+    const dialogRef = this.dialog.open(SignatureComponent, {
+      data: this.user.signature,
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.getUser();
     });
   }
 

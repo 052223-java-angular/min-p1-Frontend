@@ -4,6 +4,8 @@ import { PostService } from '../../service/post.service';
 import { ModifyCommentPayload } from 'src/app/models/ModifyCommentPayload';
 import { CommentVotePayload } from 'src/app/models/CommentVotePayload';
 import { take } from 'rxjs';
+import { CommentFormComponent } from '../comment-form/comment-form.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-comment-card',
@@ -12,49 +14,24 @@ import { take } from 'rxjs';
 })
 export class CommentCardComponent {
   @Input() comment: any;
-  modifyCommentC: boolean = false;
   user: string = sessionStorage.getItem('username') || '';
   up: number = 0;
   down: number = 0;
   voted: boolean[] = [false, false];
 
-  formGroup: FormGroup;
-  constructor(private fb: FormBuilder, private postService: PostService) {
-    this.formGroup = fb.group({
-      comment: ['', [Validators.required]],
-    });
-
+  constructor(private postService: PostService, private dialog: MatDialog) {
   }
 
-  modifyComment() {
-    if (this.formGroup.invalid) {
-      return;
-    }
 
-    const payload: ModifyCommentPayload = {
-      comment: this.formGroup.controls['comment'].value,
-      userId: sessionStorage.getItem('id') || '',
-      commentId: this.comment.id
-    };
-
-    this.postService.modifyComment(payload).pipe(take(1)).subscribe({
-      next: comment => {
-        console.log("success");
-        // Handle the sucsess response
-        // TODO: Add code for handling success response
-      },
-      error: error => {
-        console.log("failed");
-        // Handle the error response
-        // TODO: Add code for handling error response
-      }
-    })
-
-    this.modifyCommentC = false;
-  }
 
   modifyCommentClick() {
-    this.modifyCommentC = true;
+    const dialogRef = this.dialog.open(CommentFormComponent, {
+      data: this.comment,
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+
+    });
   }
 
   upvote() {

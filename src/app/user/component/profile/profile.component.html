@@ -1,16 +1,36 @@
 <div class="grid grid-rows-5 h-screen w-screen">
     <div class="grid grid-cols-3 row-span-1 w-full">
-        <div class="bg-slate-300 col-span-1">
-            {{user.username}}
-            {{user.email}}
-            Picture:
+        <div class="bg-slate-300 col-span-1 flex flex-col gap-2 p-2">
+            <div>
+                <div>user</div>
+                <div>{{user.username}}</div>
+            </div>
+            <div>
+                <div>email</div>
+                <div>{{user.email}}</div>
+            </div>
+            <div>
+                <div>signature</div>
+                <div (click)="editSignature()" class="border-orange-200 border-2 h-full">{{user.signature}}</div>
+            </div>
         </div>
-        <div class="bg-slate-400 col-span-2 w-full">
-            {{user.signature}}
-            {{user.builds.length}}
-            {{user.teams.length}}
-            {{user.posts.length}}
-            {{user.comments.length}}
+        <div class="grid grid-cols-2 grid-rows-2 bg-slate-400 col-span-2 w-full">
+            <div>
+                <div>Build Count</div>
+                <div>{{user.builds.length}}</div>
+            </div>
+            <div>
+                <div>Team Counts</div>
+                <div>{{user.teams.length}}</div>
+            </div>
+            <div>
+                <div>Post Count</div>
+                <div>{{user.posts.length}}</div>
+            </div>
+            <div>
+                <div>Comment Count</div>
+                <div>{{user.comments.length}}</div>
+            </div>
         </div>
     </div>
     <div class="bg-slate-500 row-span-2 grid grid-cols-5 items-center gap-2">

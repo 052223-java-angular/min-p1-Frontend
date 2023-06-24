@@ -4,9 +4,12 @@ import { ActivatedRoute } from '@angular/router';
 import { Post } from 'src/app/models/Post';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommentPayload } from 'src/app/models/CommentPayload';
-import { ModifyPostPayload } from 'src/app/models/ModifyPostPayload';
 import { PostVotePayload } from 'src/app/models/PostVotePayload';
 import { take } from 'rxjs';
+import { PostPayload } from 'src/app/models/PostPayload';
+import { PostFormComponent } from '../post-form/post-form.component';
+import { MatDialog } from '@angular/material/dialog';
+import { CommentFormComponent } from '../comment-form/comment-form.component';
 
 @Component({
   selector: 'app-post',
@@ -14,8 +17,7 @@ import { take } from 'rxjs';
   styleUrls: ['./post.component.css']
 })
 export class PostComponent {
-  formGroup: FormGroup;
-  formGroupB: FormGroup;
+
 
   post!: Post;
   id!: string;
@@ -26,18 +28,16 @@ export class PostComponent {
   down: number = 0;
   voted: boolean[] = [false, false];
 
-  constructor(private fb: FormBuilder, private activatedRoute: ActivatedRoute, private postService: PostService) {
-    this.formGroup = fb.group({
-      comment: ['', [Validators.required]],
-    });
+  constructor(private fb: FormBuilder, private activatedRoute: ActivatedRoute, private postService: PostService, private dialog: MatDialog) {
 
-    this.formGroupB = fb.group({
-      postTitle: ['', [Validators.required]],
-      message: ['', [Validators.required]],
-    });
   }
 
   ngOnInit() {
+    this.getPost();
+
+  }
+
+  getPost() {
     this.activatedRoute.params.subscribe(params => {
       this.id = params['postId'];
       this.postService.getPost(this.id).pipe(take(1)).subscribe(res => {
@@ -53,70 +53,27 @@ export class PostComponent {
       });
 
     });
-
   }
 
-  submitComment() {
-    if (this.formGroup.invalid) {
-      return;
-    }
-
-    const payload: CommentPayload = {
-      comment: this.formGroup.controls['comment'].value,
-      userId: sessionStorage.getItem('id') || '',
-      postId: this.id
-    };
-
-    this.postService.newComment(payload).pipe(take(1)).subscribe({
-      next: comment => {
-        console.log("success");
-        // Handle the sucsess response
-        // TODO: Add code for handling success response
-      },
-      error: error => {
-        console.log("failed");
-        // Handle the error response
-        // TODO: Add code for handling error response
-      }
-    })
-
-    this.newComment = false;
-  }
-
-  ModifyPost() {
-    if (this.formGroupB.invalid) {
-      return;
-    }
-
-    const payload: ModifyPostPayload = {
-      message: this.formGroupB.controls['message'].value,
-      postTitle: this.formGroupB.controls['postTitle'].value,
-      userId: sessionStorage.getItem('id') || '',
-      postId: this.id
-    };
-
-    this.postService.modifyPost(payload).pipe(take(1)).subscribe({
-      next: post => {
-        console.log("success");
-        // Handle the sucsess response
-        // TODO: Add code for handling success response
-      },
-      error: error => {
-        console.log("failed");
-        // Handle the error response
-        // TODO: Add code for handling error response
-      }
-    })
-
-    this.modifyPost = false;
-  }
 
   modifyPostClick() {
-    this.modifyPost = true;
+    const dialogRef = this.dialog.open(PostFormComponent, {
+      data: this.post,
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.getPost();
+    });
   }
 
   newCommentClick() {
-    this.newComment = true;
+    const dialogRef = this.dialog.open(CommentFormComponent, {
+      data: this.post,
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.getPost();
+    });
   }
 
   upvote() {

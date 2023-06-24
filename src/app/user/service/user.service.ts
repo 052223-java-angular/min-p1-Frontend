@@ -6,6 +6,7 @@ import { RegisterPayload } from 'src/app/models/RegisterPayload';
 import { LoginPayload } from 'src/app/models/LoginPayload';
 import { AbstractControl, ValidatorFn } from '@angular/forms';
 import { User } from 'src/app/models/User'
+import { ModifySignaturePayload } from 'src/app/models/ModifySignaturePayload';
 
 
 @Injectable({
@@ -35,6 +36,12 @@ export class UserService {
     this.httpOptions.headers = this.httpOptions.headers.set('Authorization', sessionStorage.getItem('token') || '');
 
     return this.http.get<User>(`${this.baseUrl}/auth/${sessionStorage.getItem('id')}`, this.httpOptions);
+  }
+
+  modifySignature(payload: ModifySignaturePayload): Observable<User> {
+    this.httpOptions.headers = this.httpOptions.headers.set('Authorization', sessionStorage.getItem('token') || '');
+
+    return this.http.post<User>(`${this.baseUrl}/auth/ModifySignature`, payload, this.httpOptions);
   }
 
   samePasswordValidator(
