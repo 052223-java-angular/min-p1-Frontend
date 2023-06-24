@@ -1,1 +1,6 @@
-<p>team-cards works!</p>
+<div (click)="view()" class="flex flex-col justify-center w-fit bg-slate-300 p-3 rounded-lg">
+    <div class="flex justify-between">
+        <div class="text-center">{{teams.name}}</div>
+        <button (click)="deleteTeam()">X</button>
+    </div>
+</div>

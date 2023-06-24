@@ -14,7 +14,7 @@ export class BuildCardComponent {
   dex: string = '1';
 
   @Input() builds: any;
-  @Output("getBuilds") geBuilds: EventEmitter<any> = new EventEmitter();
+  @Output("getBuilds") getBuilds: EventEmitter<any> = new EventEmitter();
   public pokemonList: { [index: string]: string } = this.buildServic.pokemonList;
 
   constructor(private buildServic: BuildService, private dialog: MatDialog) {
@@ -30,7 +30,7 @@ export class BuildCardComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.geBuilds.emit();
+      this.getBuilds.emit();
       console.log('The dialog was closed');
 
     });
@@ -45,7 +45,7 @@ export class BuildCardComponent {
 
     this.buildServic.deleteBuild(payload).pipe(take(1)).subscribe({
       next: comment => {
-        this.geBuilds.emit();
+        this.getBuilds.emit();
         console.log("success");
         // Handle the sucsess response
         // TODO: Add code for handling success response

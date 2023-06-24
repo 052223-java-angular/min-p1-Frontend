@@ -1,3 +1,59 @@
-<div>
-    up to 6 builds
+<div mat-dialog-content>
+    <input [value]="payload.name" [(ngModel)]="payload.name"
+        class="text-5xl text-center placeholder-red-300 border border-red-400" placeholder="TEAM NAME" type="text">
+    <div class="grid grid-cols-2 grid-rows-3 grid-flow-row gap-3">
+        <div class="flex flex-col justify-center">
+            <div *ngIf="!picList[0]" class="text-9xl bg-slate-300 text-center">+</div>
+            <img *ngIf="picList[0]" class="object-contain h-[128px]"
+                src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{{picList[0]}}.png"
+                alt="{{picList[0]}} sprite" />
+            <app-auto-complete [options]="buildListNames" (optionSelected)="updateTeam($event, 0)"></app-auto-complete>
+        </div>
+        <div class="flex flex-col justify-center">
+            <div *ngIf="!picList[1]" class="text-9xl bg-slate-300 text-center">+</div>
+            <img *ngIf="picList[1]" class="object-contain h-[128px]"
+                src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{{picList[1]}}.png"
+                alt="{{picList[1]}} sprite" />
+            <app-auto-complete [options]="buildListNames" (optionSelected)="updateTeam($event, 1)"></app-auto-complete>
+        </div>
+        <div class="flex flex-col justify-center">
+            <div *ngIf="!picList[2]" class="text-9xl bg-slate-300 text-center">+</div>
+            <img *ngIf="picList[2]" class="object-contain h-[128px]"
+                src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{{picList[2]}}.png"
+                alt="{{picList[2]}} sprite" />
+            <app-auto-complete [options]="buildListNames" (optionSelected)="updateTeam($event, 2)"></app-auto-complete>
+        </div>
+        <div class="flex flex-col justify-center">
+            <div *ngIf="!picList[3]" class="text-9xl bg-slate-300 text-center">+</div>
+            <img *ngIf="picList[3]" class="object-contain h-[128px]"
+                src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{{picList[3]}}.png"
+                alt="{{picList[3]}} sprite" />
+            <app-auto-complete [options]="buildListNames" (optionSelected)="updateTeam($event, 3)"></app-auto-complete>
+        </div>
+        <div class="flex flex-col justify-center">
+            <div *ngIf="!picList[4]" class="text-9xl bg-slate-300 text-center">+</div>
+            <img *ngIf="picList[4]" class="object-contain h-[128px]"
+                src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{{picList[4]}}.png"
+                alt="{{picList[4]}} sprite" />
+            <app-auto-complete [options]="buildListNames" (optionSelected)="updateTeam($event, 4)"></app-auto-complete>
+        </div>
+        <div class="flex flex-col justify-center">
+            <div *ngIf="!picList[5]" class="text-9xl bg-slate-300 text-center">+</div>
+            <img *ngIf="picList[5]" class="object-contain h-[128px]"
+                src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{{picList[5]}}.png"
+                alt="{{picList[5]}} sprite" />
+            <app-auto-complete [options]="buildListNames" (optionSelected)="updateTeam($event, 5)"></app-auto-complete>
+        </div>
+
+    </div>
+
+    <textarea rows="5" cols="33" [value]="payload.description" [(ngModel)]="payload.description"
+        class="text-xl text-center placeholder-red-300 border border-red-400 w-full"
+        placeholder="Description"></textarea>
+    <div class="flex justify-end p-5">
+        <button *ngIf="!data" (click)="newTeam()"
+            class="bg-blue-400 w-fit p-2 rounded-lg bg-opacity-60 hover:scale-110 cursor-pointer hover:shadow-md hover:shadow-blue-700 transition duration-200 ease-in-out">Save</button>
+        <button *ngIf="data" (click)="editTeam()"
+            class="bg-blue-400 w-fit p-2 rounded-lg bg-opacity-60 hover:scale-110 cursor-pointer hover:shadow-md hover:shadow-blue-700 transition duration-200 ease-in-out">Save</button>
+    </div>
 </div>

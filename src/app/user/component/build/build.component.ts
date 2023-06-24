@@ -17,7 +17,7 @@ export class BuildComponent {
   public option: any;
   public dex: string = "1";
   public pokemon: any = {};
-  public pokemonList: { [index: string]: string } = this.buildServic.pokemonList;
+  public pokemonList: { [index: string]: string } = this.buildService.pokemonList;
   public nameList = Object.keys(this.pokemonList)
   public natureList = [
     'Hardy',
@@ -59,7 +59,7 @@ export class BuildComponent {
     description: '',
     learnedMoves: ['', '', '', '']
   }
-  constructor(private pokeAPIservice: PokeAPIService, private buildServic: BuildService, public dialogRef: MatDialogRef<BuildCardComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
+  constructor(private pokeAPIservice: PokeAPIService, private buildService: BuildService, public dialogRef: MatDialogRef<BuildCardComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
     if (data) {
       this.payload.description = data.description;
       this.payload.buildId = data.id;
@@ -118,7 +118,7 @@ export class BuildComponent {
 
 
   newBuild() {
-    this.buildServic.newBuild(this.payload).pipe(take(1)).subscribe({
+    this.buildService.newBuild(this.payload).pipe(take(1)).subscribe({
       next: comment => {
         console.log("success");
         this.dialogRef.close();
@@ -134,7 +134,7 @@ export class BuildComponent {
   }
 
   editBuild() {
-    this.buildServic.modifyBuild(this.payload).pipe(take(1)).subscribe({
+    this.buildService.modifyBuild(this.payload).pipe(take(1)).subscribe({
       next: comment => {
         console.log("success");
         this.dialogRef.close();

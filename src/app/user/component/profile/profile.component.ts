@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { BuildService } from '../../service/build.service';
 import { TeamComponent } from '../team/team.component';
 import { take } from 'rxjs';
+import { TeamService } from '../../service/team.service';
 
 @Component({
   selector: 'app-profile',
@@ -15,7 +16,8 @@ import { take } from 'rxjs';
 export class ProfileComponent {
   user!: User;
   builds: any[] = [];
-  constructor(private userService: UserService, private buildService: BuildService, private dialog: MatDialog) {
+  teams: any[] = [];
+  constructor(private userService: UserService, private buildService: BuildService, private teamService: TeamService, private dialog: MatDialog) {
 
   }
 
@@ -31,6 +33,12 @@ export class ProfileComponent {
   getBuilds() {
     this.buildService.getBuilds().pipe(take(1)).subscribe(res => {
       this.builds = res;
+    })
+  }
+
+  getTeams() {
+    this.teamService.getTeams().pipe(take(1)).subscribe(res => {
+      this.teams = res;
     })
   }
 
@@ -50,9 +58,9 @@ export class ProfileComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-
-      console.log('The dialog was closed');
-
+      this.getTeams();
     });
   }
+
+
 }
