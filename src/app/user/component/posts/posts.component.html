@@ -1,8 +1,10 @@
-<div class="flex flex-row justify-between p-4">
-    <div>Posts</div>
+<div class="h-screen bg-[url('https://mcdn.wallpapersafari.com/medium/70/47/pMVInW.jpg')]">
+    <div class="flex flex-row justify-between p-4">
+        <div>Posts</div>
 
-    <button (click)="newPostClick()">New Post</button>
-</div>
-<div class="flex flex-col gap-2">
-    <app-post-card *ngFor="let post of posts" [post]="post"></app-post-card>
+        <button (click)="newPostClick()">New Post</button>
+    </div>
+    <div class="flex flex-col gap-2">
+        <app-post-card *ngFor="let post of posts" [post]="post"></app-post-card>
+    </div>
 </div>

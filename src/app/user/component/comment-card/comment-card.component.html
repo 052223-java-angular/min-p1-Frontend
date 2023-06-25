@@ -1,24 +1,28 @@
-<div class="grid grid-cols-10">
-    <div class="col-span-1  flex flex-col items-center justify-top bg-slate-300 p-2">
-        <button [ngClass]="voted ? 'text-green-400' : 'text-white'" (click)="upvote()">up</button>
-        <div [ngClass]="up - down > 0 ? 'text-green-400' : up - down < 0 ? 'text-red-400' : 'text-white'">
+<div class="grid grid-cols-10 gap-2">
+    <div class="col-span-1  flex flex-col items-center justify-top bg-yellow-300 p-2 rounded-xl">
+        <button
+            [ngClass]="voted ? 'text-green-600 border-b-2 border-blue-600' : 'text-white border-b-2 border-blue-600'"
+            (click)="upvote()">up</button>
+        <div
+            [ngClass]="up - down > 0 ? 'text-green-600 text-lg' : up - down < 0 ? 'text-red-400 text-lg' : 'text-white text-lg'">
             {{up-down}}
         </div>
         <div>
             votes
         </div>
-        <button [ngClass]="voted == false ? 'text-red-400' : 'text-white'" (click)="downvote()">down</button>
+        <button
+            [ngClass]="voted == false ? 'text-red-400 border-t-2  border-blue-600' : 'text-white border-t-2 border-blue-600'"
+            (click)="downvote()">down</button>
     </div>
 
-    <div class="col-span-9 bg-slate-700 flex flex-col justify-start p-2">
+    <div class="col-span-9 bg-green-300 flex flex-col justify-between p-2 rounded-xl">
         <div>{{comment.comment}}</div>
 
+        <div class="flex flex-row  justify-between">
+            <div class="text-white">last edit on {{comment.edit_time}}</div>
 
-        <div>last edit on {{comment.edit_time}}</div>
-
-        <button *ngIf="user==comment.username" (click)="modifyCommentClick()">Edit Comment</button>
-
-
+            <button *ngIf="user==comment.username" (click)="modifyCommentClick()">Edit Comment</button>
+        </div>
     </div>
 
 </div>

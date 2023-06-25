@@ -27,6 +27,7 @@ export class CommentFormComponent {
 
     if (data.comment) {
       this.payload.commentId = data.id;
+      this.payload.comment = data.comment;
     }
     this.formGroup = fb.group({
       comment: ['', [Validators.required]],

@@ -24,6 +24,9 @@ export class PostsComponent {
   getPosts() {
     this.postService.getPosts().pipe(take(1)).subscribe(res => {
       this.posts = res;
+      this.posts.sort((a: any, b: any) => {
+        return a['create_time'].localeCompare(b['create_time']);
+      })
     });
   }
 

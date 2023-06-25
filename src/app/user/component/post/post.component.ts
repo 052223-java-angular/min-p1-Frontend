@@ -3,10 +3,8 @@ import { PostService } from '../../service/post.service';
 import { ActivatedRoute } from '@angular/router';
 import { Post } from 'src/app/models/Post';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CommentPayload } from 'src/app/models/CommentPayload';
 import { PostVotePayload } from 'src/app/models/PostVotePayload';
 import { take } from 'rxjs';
-import { PostPayload } from 'src/app/models/PostPayload';
 import { PostFormComponent } from '../post-form/post-form.component';
 import { MatDialog } from '@angular/material/dialog';
 import { CommentFormComponent } from '../comment-form/comment-form.component';
@@ -42,6 +40,9 @@ export class PostComponent {
       this.id = params['postId'];
       this.postService.getPost(this.id).pipe(take(1)).subscribe(res => {
         this.post = res;
+        this.post.comments.sort((a: any, b: any) => {
+          return a['create_time'].localeCompare(b['create_time']);
+        })
         this.up = this.post.votes.filter(vote => vote['vote']).length;
         this.down = this.post.votes.length - this.up;
         for (let vote of this.post.votes) {
