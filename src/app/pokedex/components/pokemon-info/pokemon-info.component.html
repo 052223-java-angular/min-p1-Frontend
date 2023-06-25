@@ -1,21 +1,22 @@
 <div class="grid min-h-screen w-screen grid-rows-4 gap-1">
     <div class="grid grid-cols-2 row-span-2 gap-1 w-full">
-        <div class="grid grid-rows-5 w-full gap-1">
-            <div class=" bg-slate-200 row-span-4 flex justify-center items-center">
-                <img src="{{pokemon.sprites.other['official-artwork'].front_default}}" alt="">
+        <div class="grid grid-rows-5 w-full gap-1 ">
+            <div class=" bg-teal-200 row-span-4 flex justify-center items-center">
+                <img class="drop-shadow-[0_15px_15px_rgba(255,255,255,0.5)]"
+                    src="{{pokemon.sprites.other['official-artwork'].front_default}}" alt="pokemon">
             </div>
 
             <div class="row-span-1 grid grid-cols-2 gap-1">
-                <div class="bg-slate-200 w-full flex flex-col">
-                    <div class="flex justify-center bg-blue-400">ABILITIES</div>
+                <div class="bg-green-200 w-full flex flex-col">
+                    <div class="flex justify-center bg-blue-400 p-1">ABILITIES</div>
                     <div class="flex flex-col h-full justify-center items-center text-3xl">
                         <p *ngFor="let ability of pokemon.abilities;">
                             {{ability.ability.name | uppercase}}
                         </p>
                     </div>
                 </div>
-                <div class="bg-slate-200 w-full flex flex-col">
-                    <div class="flex justify-center bg-blue-400">Egg Group</div>
+                <div class="bg-green-200 w-full flex flex-col">
+                    <div class="flex justify-center bg-blue-400 p-1">EGG GRPOUP</div>
                     <div class="flex flex-col h-full justify-center items-center text-3xl">
                         <p *ngFor="let egg of pokemonSpecie.egg_groups;">
                             {{egg.name | uppercase}}
@@ -26,7 +27,7 @@
             </div>
         </div>
         <div class="grid grid-rows-5 gap-1 w-full">
-            <div class="bg-slate-500 row-span-4 w-full overflow-auto">
+            <div class="bg-orange-300 row-span-4 w-full overflow-auto">
                 <app-dropdown (OnChange)="changeInfo($event)" [items]="['Names', 'Pokedex', 'Base Stat', 'Moves']"
                     selectedItem="Names" />
                 <div class="flex flex-col items-center xl:h-[55vh] lg:h-[37vh]  w-full overflow-auto text-xl">
@@ -58,20 +59,20 @@
 
             </div>
             <div class="grid grid-cols-3 row-span-1 gap-1">
-                <div class="w-full bg-slate-200 flex flex-col">
-                    <div class="flex justify-center bg-blue-400">SHAPE</div>
+                <div class="w-full bg-green-200 flex flex-col">
+                    <div class="flex justify-center bg-blue-400 p-1">SHAPE</div>
                     <div class="flex h-full justify-center items-center text-3xl">
                         {{pokemonSpecie.shape.name | uppercase}}
                     </div>
                 </div>
-                <div class="w-full bg-slate-200 flex flex-col">
-                    <div class="flex justify-center bg-blue-400">HEIGHT</div>
+                <div class="w-full bg-green-200 flex flex-col">
+                    <div class="flex justify-center bg-blue-400 p-1">HEIGHT</div>
                     <div class="flex h-full justify-center items-center text-5xl">
                         {{pokemon.height / 10}}m
                     </div>
                 </div>
-                <div class="w-full bg-slate-200 flex flex-col">
-                    <div class="flex justify-center bg-blue-400">WEIGHT</div>
+                <div class="w-full bg-green-200 flex flex-col">
+                    <div class="flex justify-center bg-blue-400 p-1">WEIGHT</div>
                     <div class="flex h-full justify-center items-center text-5xl">
                         {{pokemon.weight / 10}}kg
                     </div>
@@ -80,15 +81,15 @@
         </div>
     </div>
 
-    <div class="bg-slate-700 flex flex-col justify-center w-screen">
-        <div class="text-center bg-purple-500 h-1/6 text-6xl">FAMILY</div>
+    <div class="bg-slate-500 flex flex-col justify-center w-screen">
+        <div class="text-center bg-purple-400 h-1/6 text-6xl p-2">FAMILY</div>
         <div class="row-span-1 flex justify-between items-center gap-4 p-4 h-full overflow-x-auto">
             <app-pokemon-card *ngFor="let p of evolutionFamily" [Dex]="p.dex-1" [Pokemon]="p.name" />
         </div>
     </div>
 
-    <div class="bg-slate-400 flex flex-col justify-center w-screen">
-        <div class="text-center bg-purple-500 h-1/6 text-6xl">FORMS</div>
+    <div class="bg-slate-500 flex flex-col justify-center w-screen">
+        <div class="text-center bg-purple-400 h-1/6 text-6xl  p-2">FORMS</div>
         <div class="row-span-1 flex justify-between items-center gap-4 p-4 h-full overflow-x-auto">
             <app-pokemon-card *ngFor="let p of forms" [Dex]="p.dex-1" [Pokemon]="p.name" />
         </div>
