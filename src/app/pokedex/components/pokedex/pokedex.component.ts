@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { PokeAPIService } from '../../services/poke-api.service';
 import { Router } from '@angular/router';
 import { take } from 'rxjs';
+import { PopupComponent } from 'src/app/utility/component/popup/popup.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-pokedex',
@@ -10,7 +12,7 @@ import { take } from 'rxjs';
   providers: [PokeAPIService]
 })
 export class PokedexComponent implements OnInit {
-  constructor(private pokeAPIservice: PokeAPIService, private router: Router) { };
+  constructor(private pokeAPIservice: PokeAPIService, private router: Router, private dialog: MatDialog) { };
 
   pokemonList: any;
   getPokemonList(): void {
@@ -20,6 +22,9 @@ export class PokedexComponent implements OnInit {
       },
       error: error => {
         console.log("failed");
+        const dialogRef = this.dialog.open(PopupComponent, {
+          data: error.error.message,
+        });;
       }
     });
   }

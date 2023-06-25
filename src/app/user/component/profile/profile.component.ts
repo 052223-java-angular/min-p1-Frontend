@@ -8,6 +8,7 @@ import { TeamComponent } from '../team/team.component';
 import { take } from 'rxjs';
 import { TeamService } from '../../service/team.service';
 import { SignatureComponent } from '../signature/signature.component';
+import { PopupComponent } from 'src/app/utility/component/popup/popup.component';
 
 @Component({
   selector: 'app-profile',
@@ -34,7 +35,10 @@ export class ProfileComponent {
         this.user = res;
       },
       error: error => {
-        console.log("failed")
+        console.log("failed");
+        const dialogRef = this.dialog.open(PopupComponent, {
+          data: error.error.message,
+        });
       }
     });
   }
@@ -45,7 +49,10 @@ export class ProfileComponent {
         this.builds = res;
       },
       error: error => {
-        console.log("failed")
+        console.log("failed");
+        const dialogRef = this.dialog.open(PopupComponent, {
+          data: error.error.message,
+        });
       }
     })
   }
@@ -56,7 +63,10 @@ export class ProfileComponent {
         this.teams = res;
       },
       error: error => {
-        console.log("failed")
+        console.log("failed");
+        const dialogRef = this.dialog.open(PopupComponent, {
+          data: error.error.message,
+        });
       }
     })
   }

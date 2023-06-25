@@ -3,8 +3,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommentPayload } from 'src/app/models/CommentPayload';
 import { PostService } from '../../service/post.service';
 import { take } from 'rxjs';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { PostComponent } from '../post/post.component';
+import { PopupComponent } from 'src/app/utility/component/popup/popup.component';
 
 @Component({
   selector: 'app-comment-form',
@@ -20,7 +21,7 @@ export class CommentFormComponent {
     commentId: ''
   };
 
-  constructor(private fb: FormBuilder, private postService: PostService, public dialogRef: MatDialogRef<PostComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
+  constructor(private fb: FormBuilder, private postService: PostService, public dialogRef: MatDialogRef<PostComponent>, @Inject(MAT_DIALOG_DATA) public data: any, private dialog: MatDialog) {
     if (data.comments) {
       this.payload.postId = data.id;
     }
@@ -50,6 +51,9 @@ export class CommentFormComponent {
       },
       error: error => {
         console.log("failed");
+        const dialogRef = this.dialog.open(PopupComponent, {
+          data: error.error.message,
+        });;
         // Handle the error response
         // TODO: Add code for handling error response
       }
@@ -72,6 +76,9 @@ export class CommentFormComponent {
       },
       error: error => {
         console.log("failed");
+        const dialogRef = this.dialog.open(PopupComponent, {
+          data: error.error.message,
+        });;
         // Handle the error response
         // TODO: Add code for handling error response
       }

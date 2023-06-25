@@ -4,6 +4,8 @@ import { UserService } from '../../service/user.service';
 import { Router } from '@angular/router';
 import { LoginPayload } from 'src/app/models/LoginPayload';
 import { take } from 'rxjs';
+import { PopupComponent } from 'src/app/utility/component/popup/popup.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +17,7 @@ export class LoginComponent {
   username: AbstractControl;
   password: AbstractControl;
 
-  constructor(private fb: FormBuilder, private userService: UserService, private router: Router) {
+  constructor(private fb: FormBuilder, private userService: UserService, private router: Router, private dialog: MatDialog) {
     this.formGroup = fb.group({
       username: ['', [Validators.required]],
       password: ['', [Validators.required]],
@@ -45,6 +47,9 @@ export class LoginComponent {
       },
       error: error => {
         console.log("failed");
+        const dialogRef = this.dialog.open(PopupComponent, {
+          data: error.error.message,
+        });;
         // Handle the error response
         // TODO: Add code for handling error response
       }

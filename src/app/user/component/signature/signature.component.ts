@@ -1,9 +1,10 @@
 import { Component, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ModifySignaturePayload } from 'src/app/models/ModifySignaturePayload';
 import { ProfileComponent } from '../profile/profile.component';
 import { UserService } from '../../service/user.service';
 import { take } from 'rxjs';
+import { PopupComponent } from 'src/app/utility/component/popup/popup.component';
 
 @Component({
   selector: 'app-signature',
@@ -16,7 +17,7 @@ export class SignatureComponent {
     signature: ''
   }
 
-  constructor(private userService: UserService, public dialogRef: MatDialogRef<ProfileComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
+  constructor(private userService: UserService, public dialogRef: MatDialogRef<ProfileComponent>, @Inject(MAT_DIALOG_DATA) public data: any, private dialog: MatDialog) {
     this.payload.signature = data
   }
   saveSignature() {
@@ -29,6 +30,9 @@ export class SignatureComponent {
       },
       error: error => {
         console.log("failed");
+        const dialogRef = this.dialog.open(PopupComponent, {
+          data: error.error.message,
+        });;
         // Handle the error response
         // TODO: Add code for handling error response
       }

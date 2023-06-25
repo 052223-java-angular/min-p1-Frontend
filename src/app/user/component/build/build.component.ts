@@ -3,9 +3,10 @@ import { BuildPayload } from 'src/app/models/BuildPayload';
 import { PokeAPIService } from 'src/app/pokedex/services/poke-api.service';
 import { BuildService } from '../../service/build.service';
 import { BuildCardComponent } from '../build-card/build-card.component';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ModifyBuildPayload } from 'src/app/models/ModifyBuildPayload';
 import { take } from 'rxjs';
+import { PopupComponent } from 'src/app/utility/component/popup/popup.component';
 
 
 @Component({
@@ -59,7 +60,7 @@ export class BuildComponent {
     description: '',
     learnedMoves: ['', '', '', '']
   }
-  constructor(private pokeAPIservice: PokeAPIService, private buildService: BuildService, public dialogRef: MatDialogRef<BuildCardComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
+  constructor(private pokeAPIservice: PokeAPIService, private buildService: BuildService, public dialogRef: MatDialogRef<BuildCardComponent>, @Inject(MAT_DIALOG_DATA) public data: any, private dialog: MatDialog) {
     if (data) {
       this.payload.description = data.description;
       this.payload.buildId = data.id;
@@ -84,7 +85,10 @@ export class BuildComponent {
         this.moveList = this.pokemon.moves.map((move: { move: any; }) => move.move.name);
       },
       error: error => {
-        console.log("failed")
+        console.log("failed");
+        const dialogRef = this.dialog.open(PopupComponent, {
+          data: error.error.message,
+        });
       }
     }
     );
@@ -131,6 +135,9 @@ export class BuildComponent {
       },
       error: error => {
         console.log("failed");
+        const dialogRef = this.dialog.open(PopupComponent, {
+          data: error.error.message,
+        });;
         // Handle the error response
         // TODO: Add code for handling error response
       }
@@ -147,6 +154,9 @@ export class BuildComponent {
       },
       error: error => {
         console.log("failed");
+        const dialogRef = this.dialog.open(PopupComponent, {
+          data: error.error.message,
+        });;
         // Handle the error response
         // TODO: Add code for handling error response
       }

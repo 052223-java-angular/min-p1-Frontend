@@ -2,9 +2,10 @@ import { Component, Inject } from '@angular/core';
 import { BuildService } from '../../service/build.service';
 import { TeamService } from '../../service/team.service';
 import { take } from 'rxjs';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { BuildCardComponent } from '../build-card/build-card.component';
 import { TeamPayload } from 'src/app/models/TeamPayload';
+import { PopupComponent } from 'src/app/utility/component/popup/popup.component';
 
 @Component({
   selector: 'app-team',
@@ -26,7 +27,7 @@ export class TeamComponent {
     builds: []
   }
 
-  constructor(private buildService: BuildService, private teamService: TeamService, public dialogRef: MatDialogRef<BuildCardComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
+  constructor(private buildService: BuildService, private teamService: TeamService, public dialogRef: MatDialogRef<BuildCardComponent>, @Inject(MAT_DIALOG_DATA) public data: any, private dialog: MatDialog) {
     if (data) {
       this.payload.description = data.description;
       this.payload.teamId = data.id;
@@ -53,7 +54,10 @@ export class TeamComponent {
         }
       },
       error: error => {
-        console.log("failed")
+        console.log("failed");
+        const dialogRef = this.dialog.open(PopupComponent, {
+          data: error.error.message,
+        });
       }
     })
   }
@@ -73,6 +77,9 @@ export class TeamComponent {
       },
       error: error => {
         console.log("failed");
+        const dialogRef = this.dialog.open(PopupComponent, {
+          data: error.error.message,
+        });;
         // Handle the error response
         // TODO: Add code for handling error response
       }
@@ -89,6 +96,9 @@ export class TeamComponent {
       },
       error: error => {
         console.log("failed");
+        const dialogRef = this.dialog.open(PopupComponent, {
+          data: error.error.message,
+        });;
 
       }
     })

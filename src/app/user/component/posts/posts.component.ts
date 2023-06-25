@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { take } from 'rxjs';
 import { PostFormComponent } from '../post-form/post-form.component';
 import { MatDialog } from '@angular/material/dialog';
+import { PopupComponent } from 'src/app/utility/component/popup/popup.component';
 
 @Component({
   selector: 'app-posts',
@@ -30,7 +31,10 @@ export class PostsComponent {
         })
       },
       error: error => {
-        console.log("failed")
+        console.log("failed");
+        const dialogRef = this.dialog.open(PopupComponent, {
+          data: error.error.message,
+        });
       }
     });
   }

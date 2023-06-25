@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { BuildComponent } from '../build/build.component';
 import { DeleteBuildPayLoad } from 'src/app/models/DeleteBuildPayload';
 import { take } from 'rxjs';
+import { PopupComponent } from 'src/app/utility/component/popup/popup.component';
 
 @Component({
   selector: 'app-build-card',
@@ -51,6 +52,9 @@ export class BuildCardComponent {
       },
       error: error => {
         console.log("failed");
+        const dialogRef = this.dialog.open(PopupComponent, {
+          data: error.error.message,
+        });;
         // Handle the error response
         // TODO: Add code for handling error response
       }

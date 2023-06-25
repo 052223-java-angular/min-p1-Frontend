@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PokeAPIService } from '../../services/poke-api.service';
 import { take } from 'rxjs';
+import { PopupComponent } from 'src/app/utility/component/popup/popup.component';
+import { MatDialog } from '@angular/material/dialog';
 
 
 @Component({
@@ -18,7 +20,7 @@ export class PokemonInfoComponent {
   public forms: any = [];
   public info: string = 'Names';
 
-  constructor(private activatedRoute: ActivatedRoute, private pokeAPIservice: PokeAPIService) { }
+  constructor(private activatedRoute: ActivatedRoute, private pokeAPIservice: PokeAPIService, private dialog: MatDialog) { }
 
   getPokemon(dex: string): void {
     this.pokeAPIservice.getPokemonByDex(dex).pipe(take(1)).subscribe({
@@ -26,7 +28,10 @@ export class PokemonInfoComponent {
         this.pokemon = data
       },
       error: error => {
-        console.log("failed")
+        console.log("failed");
+        const dialogRef = this.dialog.open(PopupComponent, {
+          data: error.error.message,
+        });
       }
     });
   }
@@ -39,7 +44,10 @@ export class PokemonInfoComponent {
         this.getForms();
       },
       error: error => {
-        console.log("failed")
+        console.log("failed");
+        const dialogRef = this.dialog.open(PopupComponent, {
+          data: error.error.message,
+        });
       }
     });
   }
@@ -54,7 +62,12 @@ export class PokemonInfoComponent {
         });
         this.getEvolutionFamily(this.evolutionChain.chain.evolves_to);
       },
-      error: error => { console.log("failed") }
+      error: error => {
+        console.log("failed");
+        const dialogRef = this.dialog.open(PopupComponent, {
+          data: error.error.message,
+        });
+      }
     });
   }
 

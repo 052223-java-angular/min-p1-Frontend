@@ -6,6 +6,7 @@ import { CommentVotePayload } from 'src/app/models/CommentVotePayload';
 import { take } from 'rxjs';
 import { CommentFormComponent } from '../comment-form/comment-form.component';
 import { MatDialog } from '@angular/material/dialog';
+import { PopupComponent } from 'src/app/utility/component/popup/popup.component';
 
 @Component({
   selector: 'app-comment-card',
@@ -57,6 +58,9 @@ export class CommentCardComponent {
       },
       error: error => {
         console.log("failed");
+        const dialogRef = this.dialog.open(PopupComponent, {
+          data: error.error.message,
+        });;
         // Handle the error response
         // TODO: Add code for handling error response
       }
@@ -85,6 +89,9 @@ export class CommentCardComponent {
       },
       error: error => {
         console.log("failed");
+        const dialogRef = this.dialog.open(PopupComponent, {
+          data: error.error.message,
+        });;
         // Handle the error response
         // TODO: Add code for handling error response
       }

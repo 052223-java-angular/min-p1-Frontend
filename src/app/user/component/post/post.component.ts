@@ -8,6 +8,7 @@ import { take } from 'rxjs';
 import { PostFormComponent } from '../post-form/post-form.component';
 import { MatDialog } from '@angular/material/dialog';
 import { CommentFormComponent } from '../comment-form/comment-form.component';
+import { PopupComponent } from 'src/app/utility/component/popup/popup.component';
 
 @Component({
   selector: 'app-post',
@@ -97,8 +98,11 @@ export class PostComponent {
         // Handle the sucsess response
         // TODO: Add code for handling success response
       },
-      error: ele => {
+      error: error => {
         console.log("failed");
+        const dialogRef = this.dialog.open(PopupComponent, {
+          data: error.error.message,
+        });;
         // Handle the error response
         // TODO: Add code for handling error response
       }
@@ -126,8 +130,11 @@ export class PostComponent {
         // Handle the sucsess response
         // TODO: Add code for handling success response
       },
-      error: ele => {
+      error: error => {
         console.log("failed");
+        const dialogRef = this.dialog.open(PopupComponent, {
+          data: error.error.message,
+        });;
         // Handle the error response
         // TODO: Add code for handling error response
       }

@@ -4,6 +4,8 @@ import { UserService } from "../../service/user.service";
 import { RegisterPayload } from "src/app/models/RegisterPayload";
 import { Router } from "@angular/router";
 import { take } from "rxjs";
+import { PopupComponent } from "src/app/utility/component/popup/popup.component";
+import { MatDialog } from "@angular/material/dialog";
 
 @Component({
   selector: 'app-register',
@@ -17,7 +19,7 @@ export class RegisterComponent {
   password: AbstractControl;
   confirmedPassword: AbstractControl;
 
-  constructor(private fb: FormBuilder, private userService: UserService, private router: Router) {
+  constructor(private fb: FormBuilder, private userService: UserService, private router: Router, private dialog: MatDialog) {
     this.formGroup = fb.group({
       username: ['', [Validators.required, Validators.pattern('(?=[a-zA-Z0-9._]{8,20}$)(?!.*[_.]{2})[^_.].*[^_.]')]],
       email: ['', [Validators.required, Validators.email]],
@@ -56,6 +58,9 @@ export class RegisterComponent {
       },
       error: error => {
         console.log("failed");
+        const dialogRef = this.dialog.open(PopupComponent, {
+          data: error.error.message,
+        });;
         // Handle the error response
         // TODO: Add code for handling error response
       }
