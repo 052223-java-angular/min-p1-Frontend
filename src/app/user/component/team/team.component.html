@@ -1,50 +1,50 @@
 <div mat-dialog-content>
     <input [value]="payload.name" [(ngModel)]="payload.name"
         class="text-5xl text-center placeholder-red-300 border border-red-400" placeholder="TEAM NAME" type="text">
-    <div class="grid grid-cols-2 grid-rows-3 grid-flow-row gap-3">
-        <div class="flex flex-col justify-center">
-            <div *ngIf="!picList[0]" class="text-9xl bg-slate-300 text-center">+</div>
-            <img *ngIf="picList[0]" class="object-contain h-[128px]"
+    <div class="grid grid-cols-2 grid-rows-3 grid-flow-row gap-3 bg-lime-200 p-5 ">
+        <div class="flex flex-col justify-center items-center">
+            <div *ngIf="!picList[0]" class="text-9xl bg-lime-300 text-center w-full rounded-lg">+</div>
+            <img *ngIf="picList[0]" class="object-contain h-[128px]  bg-lime-300 w-full rounded-lg "
                 src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{{picList[0]}}.png"
                 alt="{{picList[0]}} sprite" />
             <app-auto-complete [options]="buildListNames" [selected]="payload.builds[0]"
                 (optionSelected)="updateTeam($event, 0)" [nameMap]="nameMap"></app-auto-complete>
         </div>
-        <div class="flex flex-col justify-center">
-            <div *ngIf="!picList[1]" class="text-9xl bg-slate-300 text-center">+</div>
-            <img *ngIf="picList[1]" class="object-contain h-[128px]"
+        <div class="flex flex-col justify-center items-center">
+            <div *ngIf="!picList[1]" class="text-9xl bg-lime-300 text-center w-full rounded-lg  ">+</div>
+            <img *ngIf="picList[1]" class="object-contain h-[128px]  bg-lime-300 w-full rounded-lg"
                 src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{{picList[1]}}.png"
                 alt="{{picList[1]}} sprite" />
             <app-auto-complete [options]="buildListNames" [selected]="payload.builds[1]"
                 (optionSelected)="updateTeam($event, 1)" [nameMap]="nameMap"></app-auto-complete>
         </div>
-        <div class="flex flex-col justify-center">
-            <div *ngIf="!picList[2]" class="text-9xl bg-slate-300 text-center">+</div>
-            <img *ngIf="picList[2]" class="object-contain h-[128px]"
+        <div class="flex flex-col justify-center items-center">
+            <div *ngIf="!picList[2]" class="text-9xl bg-lime-300 text-center w-full rounded-lg  ">+</div>
+            <img *ngIf="picList[2]" class="object-contain h-[128px]  bg-lime-300 w-full rounded-lg"
                 src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{{picList[2]}}.png"
                 alt="{{picList[2]}} sprite" />
             <app-auto-complete [options]="buildListNames" [selected]="payload.builds[2]"
                 (optionSelected)="updateTeam($event, 2)" [nameMap]="nameMap"></app-auto-complete>
         </div>
-        <div class="flex flex-col justify-center">
-            <div *ngIf="!picList[3]" class="text-9xl bg-slate-300 text-center">+</div>
-            <img *ngIf="picList[3]" class="object-contain h-[128px]"
+        <div class="flex flex-col justify-center items-center">
+            <div *ngIf="!picList[3]" class="text-9xl bg-lime-300 text-center w-full rounded-lg  ">+</div>
+            <img *ngIf="picList[3]" class="object-contain h-[128px]  bg-lime-300 w-full rounded-lg"
                 src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{{picList[3]}}.png"
                 alt="{{picList[3]}} sprite" />
             <app-auto-complete [options]="buildListNames" [selected]="payload.builds[3]"
                 (optionSelected)="updateTeam($event, 3)" [nameMap]="nameMap"></app-auto-complete>
         </div>
-        <div class="flex flex-col justify-center">
-            <div *ngIf="!picList[4]" class="text-9xl bg-slate-300 text-center">+</div>
-            <img *ngIf="picList[4]" class="object-contain h-[128px]"
+        <div class="flex flex-col justify-center items-center">
+            <div *ngIf="!picList[4]" class="text-9xl bg-lime-300 text-center w-full rounded-lg  ">+</div>
+            <img *ngIf="picList[4]" class="object-contain h-[128px]   bg-lime-300 w-full rounded-lg"
                 src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{{picList[4]}}.png"
                 alt="{{picList[4]}} sprite" />
             <app-auto-complete [options]="buildListNames" [selected]="payload.builds[4]"
                 (optionSelected)="updateTeam($event, 4)" [nameMap]="nameMap"></app-auto-complete>
         </div>
-        <div class="flex flex-col justify-center">
-            <div *ngIf="!picList[5]" class="text-9xl bg-slate-300 text-center">+</div>
-            <img *ngIf="picList[5]" class="object-contain h-[128px]"
+        <div class="flex flex-col justify-center items-center">
+            <div *ngIf="!picList[5]" class="text-9xl bg-lime-300 text-center w-full rounded-lg  ">+</div>
+            <img *ngIf="picList[5]" class="object-contain h-[128px]  bg-lime-300 w-full rounded-lg"
                 src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{{picList[5]}}.png"
                 alt="{{picList[5]}} sprite" />
             <app-auto-complete [options]="buildListNames" [selected]="payload.builds[5]"
