@@ -27,6 +27,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { SignatureComponent } from './user/component/signature/signature.component';
 import { PostFormComponent } from './user/component/post-form/post-form.component';
 import { CommentFormComponent } from './user/component/comment-form/comment-form.component';
+import { NavigationComponent } from './user/component/navigation/navigation.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,6 +49,7 @@ import { CommentFormComponent } from './user/component/comment-form/comment-form
     SignatureComponent,
     PostFormComponent,
     CommentFormComponent,
+    NavigationComponent,
 
   ],
   imports: [
