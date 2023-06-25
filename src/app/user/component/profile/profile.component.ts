@@ -29,20 +29,35 @@ export class ProfileComponent {
 
   }
   getUser() {
-    this.userService.getUser().pipe(take(1)).subscribe(res => {
-      this.user = res;
+    this.userService.getUser().pipe(take(1)).subscribe({
+      next: res => {
+        this.user = res;
+      },
+      error: error => {
+        console.log("failed")
+      }
     });
   }
 
   getBuilds() {
-    this.buildService.getBuilds().pipe(take(1)).subscribe(res => {
-      this.builds = res;
+    this.buildService.getBuilds().pipe(take(1)).subscribe({
+      next: res => {
+        this.builds = res;
+      },
+      error: error => {
+        console.log("failed")
+      }
     })
   }
 
   getTeams() {
-    this.teamService.getTeams().pipe(take(1)).subscribe(res => {
-      this.teams = res;
+    this.teamService.getTeams().pipe(take(1)).subscribe({
+      next: res => {
+        this.teams = res;
+      },
+      error: error => {
+        console.log("failed")
+      }
     })
   }
 

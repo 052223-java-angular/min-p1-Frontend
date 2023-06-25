@@ -77,12 +77,16 @@ export class BuildComponent {
 
 
   getPokemon(dex: string): void {
-    this.pokeAPIservice.getPokemonByDex(dex).pipe(take(1)).subscribe(
-      data => {
+    this.pokeAPIservice.getPokemonByDex(dex).pipe(take(1)).subscribe({
+      next: data => {
         this.pokemon = data;
         this.abilityList = this.pokemon.abilities.map((ability: { ability: any; }) => ability.ability.name);
         this.moveList = this.pokemon.moves.map((move: { move: any; }) => move.move.name);
+      },
+      error: error => {
+        console.log("failed")
       }
+    }
     );
   }
 

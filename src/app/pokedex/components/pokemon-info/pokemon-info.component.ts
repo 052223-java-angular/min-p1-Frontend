@@ -21,25 +21,40 @@ export class PokemonInfoComponent {
   constructor(private activatedRoute: ActivatedRoute, private pokeAPIservice: PokeAPIService) { }
 
   getPokemon(dex: string): void {
-    this.pokeAPIservice.getPokemonByDex(dex).pipe(take(1)).subscribe(data => this.pokemon = data);
+    this.pokeAPIservice.getPokemonByDex(dex).pipe(take(1)).subscribe({
+      next: data => {
+        this.pokemon = data
+      },
+      error: error => {
+        console.log("failed")
+      }
+    });
   }
 
   getPokemonSpecie(dex: string): void {
-    this.pokeAPIservice.getPokemonSpeciesByDex(dex).pipe(take(1)).subscribe(data => {
-      this.pokemonSpecie = data
-      this.getEvolutionChain(this.pokemonSpecie.evolution_chain.url);
-      this.getForms();
+    this.pokeAPIservice.getPokemonSpeciesByDex(dex).pipe(take(1)).subscribe({
+      next: data => {
+        this.pokemonSpecie = data
+        this.getEvolutionChain(this.pokemonSpecie.evolution_chain.url);
+        this.getForms();
+      },
+      error: error => {
+        console.log("failed")
+      }
     });
   }
 
   getEvolutionChain(url: string): void {
-    this.pokeAPIservice.getEvolutionChain(url).pipe(take(1)).subscribe(data => {
-      this.evolutionChain = data;
-      this.evolutionFamily.push({
-        dex: this.parseUrlForDex(this.evolutionChain.chain.species.url),
-        name: this.evolutionChain.chain.species.name
-      });
-      this.getEvolutionFamily(this.evolutionChain.chain.evolves_to);
+    this.pokeAPIservice.getEvolutionChain(url).pipe(take(1)).subscribe({
+      next: data => {
+        this.evolutionChain = data;
+        this.evolutionFamily.push({
+          dex: this.parseUrlForDex(this.evolutionChain.chain.species.url),
+          name: this.evolutionChain.chain.species.name
+        });
+        this.getEvolutionFamily(this.evolutionChain.chain.evolves_to);
+      },
+      error: error => { console.log("failed") }
     });
   }
 

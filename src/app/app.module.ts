@@ -28,6 +28,7 @@ import { SignatureComponent } from './user/component/signature/signature.compone
 import { PostFormComponent } from './user/component/post-form/post-form.component';
 import { CommentFormComponent } from './user/component/comment-form/comment-form.component';
 import { NavigationComponent } from './user/component/navigation/navigation.component';
+import { PopupComponent } from './utility/component/popup/popup.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,6 +51,7 @@ import { NavigationComponent } from './user/component/navigation/navigation.comp
     PostFormComponent,
     CommentFormComponent,
     NavigationComponent,
+    PopupComponent,
 
   ],
   imports: [

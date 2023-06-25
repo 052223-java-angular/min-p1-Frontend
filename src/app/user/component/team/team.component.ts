@@ -38,17 +38,22 @@ export class TeamComponent {
 
     }
 
-    this.buildService.getBuilds().pipe(take(1)).subscribe(res => {
-      res.forEach(build => {
-        this.buildList[build.id] = build
-        this.nameMap[build.id] = build.name
-        this.buildListNames.push(build.id)
-      });
+    this.buildService.getBuilds().pipe(take(1)).subscribe({
+      next: res => {
+        res.forEach(build => {
+          this.buildList[build.id] = build
+          this.nameMap[build.id] = build.name
+          this.buildListNames.push(build.id)
+        });
 
-      if (data) {
-        for (let i = 0; i < data.builds.length; i++) {
-          this.picList[i] = this.pokemonList[this.buildList[this.data.builds[i].id].pokemon]
+        if (data) {
+          for (let i = 0; i < data.builds.length; i++) {
+            this.picList[i] = this.pokemonList[this.buildList[this.data.builds[i].id].pokemon]
+          }
         }
+      },
+      error: error => {
+        console.log("failed")
       }
     })
   }
