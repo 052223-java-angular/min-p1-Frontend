@@ -6,12 +6,13 @@ import { CommentVotePayload } from 'src/app/models/CommentVotePayload';
 import { Post } from 'src/app/models/Post';
 import { PostPayload } from 'src/app/models/PostPayload';
 import { PostVotePayload } from 'src/app/models/PostVotePayload';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostService {
-  baseUrl = 'http://localhost:8080/pokemon/api';
+  baseUrl = environment.apiBaseUrl;
   httpOptions = {
     headers: new HttpHeaders({
       Authorization: sessionStorage.getItem('token') || ''

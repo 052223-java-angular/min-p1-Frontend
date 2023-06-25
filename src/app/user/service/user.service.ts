@@ -7,13 +7,14 @@ import { LoginPayload } from 'src/app/models/LoginPayload';
 import { AbstractControl, ValidatorFn } from '@angular/forms';
 import { User } from 'src/app/models/User'
 import { ModifySignaturePayload } from 'src/app/models/ModifySignaturePayload';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  baseUrl = 'http://localhost:8080/pokemon/api';
+  baseUrl = environment.apiBaseUrl;
   loggedIn: boolean = false;
   httpOptions = {
     headers: new HttpHeaders({

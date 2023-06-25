@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { BuildPayload } from 'src/app/models/BuildPayload';
 import { DeleteBuildPayLoad } from 'src/app/models/DeleteBuildPayload';
-import { ModifyBuildPayload } from 'src/app/models/ModifyBuildPayload';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -1023,7 +1023,7 @@ export class BuildService {
 
   }
 
-  baseUrl = 'http://localhost:8080/pokemon/api';
+  baseUrl = environment.apiBaseUrl;
   httpOptions = {
     headers: new HttpHeaders({
       Authorization: sessionStorage.getItem('token') || ''

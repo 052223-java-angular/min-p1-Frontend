@@ -36,7 +36,7 @@
     </div>
     <div class="bg-lime-300 row-span-2 grid grid-cols-5 items-center gap-2">
         <Button (click)="newTeam()"
-            class="text-9xl bg-lime-600 p-2 rounded-lg bg-opacity-60 hover:scale-110 cursor-pointer hover:shadow-md hover:shadow-blue-700 transition duration-200 ease-in-out">+</Button>
+            class="text-9xl bg-lime-600 p-2 rounded-lg bg-opacity-60 hover:scale-110 cursor-pointer hover:shadow-md hover:shadow-lime-700 transition duration-200 ease-in-out">+</Button>
         <app-team-cards (getTeams)="getTeams()" *ngFor="let team of teams" [team]="team"
             [builds]="builds"></app-team-cards>
     </div>

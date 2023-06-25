@@ -3,12 +3,13 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { DeleteTeamPayLoad } from 'src/app/models/DeleteTeamPayload';
 import { TeamPayload } from 'src/app/models/TeamPayload';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TeamService {
-  baseUrl = 'http://localhost:8080/pokemon/api';
+  baseUrl = environment.apiBaseUrl;
   httpOptions = {
     headers: new HttpHeaders({
       Authorization: sessionStorage.getItem('token') || ''
