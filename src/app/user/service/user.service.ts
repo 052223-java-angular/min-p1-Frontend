@@ -14,6 +14,7 @@ import { ModifySignaturePayload } from 'src/app/models/ModifySignaturePayload';
 })
 export class UserService {
   baseUrl = 'http://localhost:8080/pokemon/api';
+  loggedIn: boolean = false;
   httpOptions = {
     headers: new HttpHeaders({
       Authorization: sessionStorage.getItem('token') || ''
@@ -23,6 +24,9 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   /* --------------------------- Methods --------------------------- */
+  isLoggedIn(): boolean {
+    return sessionStorage.getItem('username') != null;
+  }
 
   login(payload: LoginPayload): Observable<Auth> {
     return this.http.post<Auth>(`${this.baseUrl}/auth/login`, payload);

@@ -18,9 +18,6 @@ export class PokedexComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (!sessionStorage.getItem('username')) {
-      this.router.navigate(['/login'])
-    }
     this.getPokemonList();
   }
 
