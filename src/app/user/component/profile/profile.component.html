@@ -30,12 +30,15 @@
         </div>
     </div>
     <div class="bg-indigo-400 row-span-2 grid grid-cols-5 items-center gap-2">
-        <Button (click)="newBuild()" class="text-9xl border-2 border-white p-2">+</Button>
+        <Button (click)="newBuild()"
+            class="text-9xl bg-indigo-600 p-2 rounded-lg bg-opacity-60 hover:scale-110 cursor-pointer hover:shadow-md hover:shadow-blue-700 transition duration-200 ease-in-out">+</Button>
         <app-build-card (getBuilds)="getBuilds()" *ngFor="let build of builds" [builds]="build"></app-build-card>
     </div>
-    <div class="bg-slate- row-span-2 grid grid-cols-5 items-center gap-2">
-        <Button (click)="newTeam()" class="text-9xl border-2 border-white p-2">+</Button>
+    <div class="bg-lime-300 row-span-2 grid grid-cols-5 items-center gap-2">
+        <Button (click)="newTeam()"
+            class="text-9xl bg-lime-600 p-2 rounded-lg bg-opacity-60 hover:scale-110 cursor-pointer hover:shadow-md hover:shadow-blue-700 transition duration-200 ease-in-out">+</Button>
         <app-team-cards (getTeams)="getTeams()" *ngFor="let team of teams" [team]="team"
             [builds]="builds"></app-team-cards>
     </div>
 </div>
+<!--  -->

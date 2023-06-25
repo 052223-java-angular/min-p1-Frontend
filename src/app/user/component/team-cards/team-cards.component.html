@@ -1,11 +1,11 @@
-<div class="flex flex-col justify-center w-fit bg-slate-300 p-3 rounded-lg">
+<div class="flex flex-col justify-center w-fit bg-lime-500 shadow-2xl shadow-lime-600 p-3 rounded-lg">
     <div class="flex justify-between">
         <div class="text-center">{{team.name}}</div>
         <button (click)="deleteTeam()">X</button>
 
     </div>
-    <div (click)="view()" class="grid grid-cols-2 grid-rows-3">
-        <img *ngFor="let dex of dexes" class="object-contain"
+    <div (click)="view()" class="grid grid-cols-2 grid-rows-3 gap-1 ">
+        <img *ngFor="let dex of dexes" class="object-contain bg-lime-600 p-1 rounded-md"
             src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{{dex}}.png"
             alt="{{dex}} sprite" />
     </div>
