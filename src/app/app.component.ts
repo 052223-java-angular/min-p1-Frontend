@@ -25,7 +25,7 @@ export class AppComponent {
   toggleNav() {
     if (!this.dialogRef) {
       this.dialogRef = this.dialog.open(NavigationComponent, {
-        data: null,
+        data: "navigation",
       });
 
 

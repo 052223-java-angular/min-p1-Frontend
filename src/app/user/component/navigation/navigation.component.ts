@@ -1,7 +1,8 @@
-import { Component, HostListener } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { Component, HostListener, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { BuildService } from '../../service/build.service';
+import { AppComponent } from 'src/app/app.component';
 
 @Component({
   selector: 'app-navigation',
@@ -19,7 +20,7 @@ export class NavigationComponent {
 
   public pokemonList = this.buildService.pokemonList;
 
-  constructor(private router: Router, private buildService: BuildService) {
+  constructor(private router: Router, private buildService: BuildService, public dialogRef: MatDialogRef<AppComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
     for (let pokemon in this.pokemonList) {
       this.options.push(pokemon)
     }
@@ -30,6 +31,6 @@ export class NavigationComponent {
     } else {
       this.router.navigate([`/${destination}`])
     }
-
+    this.dialogRef.close();
   }
 }
