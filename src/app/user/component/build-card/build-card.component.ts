@@ -46,6 +46,7 @@ export class BuildCardComponent {
 
     this.buildService.deleteBuild(payload).pipe(take(1)).subscribe({
       next: comment => {
+        this.getBuilds.emit();
         console.log("success");
         // Handle the sucsess response
         // TODO: Add code for handling success response
