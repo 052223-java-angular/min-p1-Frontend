@@ -29,6 +29,8 @@ import { PostFormComponent } from './user/component/post-form/post-form.componen
 import { CommentFormComponent } from './user/component/comment-form/comment-form.component';
 import { NavigationComponent } from './user/component/navigation/navigation.component';
 import { PopupComponent } from './utility/component/popup/popup.component';
+import { PageNotFoundComponent } from './utility/component/page-not-found/page-not-found.component';
+import { LandingComponent } from './utility/component/landing/landing.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,6 +54,8 @@ import { PopupComponent } from './utility/component/popup/popup.component';
     CommentFormComponent,
     NavigationComponent,
     PopupComponent,
+    PageNotFoundComponent,
+    LandingComponent,
 
   ],
   imports: [
