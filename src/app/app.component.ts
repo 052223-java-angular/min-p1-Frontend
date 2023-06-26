@@ -34,5 +34,9 @@ export class AppComponent {
       this.dialogRef = null;
     }
 
+    this.dialogRef.afterClosed().subscribe(() => {
+      this.dialogRef = null;
+    });
+
   }
 }
