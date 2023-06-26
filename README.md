@@ -2,7 +2,8 @@
 
 ## Introduction
 
-Pokémon app is an Angular and Spring Boot fullstack application. The application will be primarily be written using Java and TypeScript and will utilize a PostgreSQL database to store user information, dicussions and team recommendations.
+View Pokémons and their info. Build your own Pokémon and assemble a team. Share your builds and have discussions with fellow trainers.
+Pokémon app is an Angular and Spring Boot fullstack application. The application will be primarily be written using Java and TypeScript and will utilize a PostgreSQL database to store user information, dicussions and team recommendations. 
 
 ## User Stories
 
