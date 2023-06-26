@@ -1,8 +1,9 @@
-<form>
-    <mat-form-field>
-        <input [(ngModel)]="nameMap  && selected ? nameMap[selected] : selected" class="text-4xl" type="text"
-            placeholder="Pick one" matInput [formControl]="myControl" [matAutocomplete]="auto">
-        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+<form mat-dialog-content [ngClass]="nav ? ' w-[50vw] text-4xl':'text-4xl'">
+    <mat-form-field [ngClass]="nav ? 'w-full':''">
+        <input [(ngModel)]="nameMap  && selected ? nameMap[selected] : selected"
+            [ngClass]="nav ? 'w-full text-4xl':'text-4xl'" type="text" placeholder="Pick one" matInput
+            [formControl]="myControl" [matAutocomplete]="auto">
+        <mat-autocomplete [ngClass]="nav ? 'w-full':''" autoActiveFirstOption #auto="matAutocomplete">
             <mat-option (onSelectionChange)="onSelect(option)" *ngFor="let option of filteredOptions | async"
                 [value]="nameMap ? nameMap[option] : option">
                 {{nameMap ? nameMap[option] : option}}

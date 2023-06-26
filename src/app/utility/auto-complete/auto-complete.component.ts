@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
-import { NgFor, AsyncPipe } from '@angular/common';
+import { NgFor, AsyncPipe, CommonModule } from '@angular/common';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -20,6 +20,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     ReactiveFormsModule,
     NgFor,
     AsyncPipe,
+    CommonModule
   ],
 })
 export class AutoCompleteComponent implements OnInit {
@@ -27,6 +28,7 @@ export class AutoCompleteComponent implements OnInit {
   @Input() options: string[] = [];
   @Input() selected?: string;
   @Input() nameMap: any;
+  @Input() nav: boolean = false;
   @Output() optionSelected = new EventEmitter();// emits the option selected
   filteredOptions?: Observable<string[]>;
 
@@ -35,6 +37,8 @@ export class AutoCompleteComponent implements OnInit {
       startWith(''),
       map(value => this._filter(value || '')),
     );
+
+    console.log(this.nav)
   }
 
   private _filter(value: string): string[] {
