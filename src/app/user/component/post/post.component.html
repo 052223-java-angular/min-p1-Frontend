@@ -1,0 +1,44 @@
+<div
+    class=" flex flex-col gap-2 bg-pink-300  h-screen   bg-[url('https://mcdn.wallpapersafari.com/medium/32/97/baexpZ.jpg')]">
+    <div class="text-center text-5xl text-white border-b-red-300 border-b-8 p-5">{{post.postTitle | uppercase}}</div>
+    <div class="grid grid-cols-10 gap-2">
+        <div class="col-span-1  flex flex-col items-center justify-top bg-yellow-300 p-2 rounded-xl">
+            <button [ngClass]="voted ? 'text-green-600  ' : 'text-white'" (click)="upvote()">up</button>
+            <div
+                [ngClass]="up - down > 0 ? 'text-green-600  text-lg' : up - down < 0 ? 'text-red-400 text-lg' : 'text-white text-lg'">
+                {{up-down}}
+            </div>
+            <div>
+                votes
+            </div>
+            <button [ngClass]="voted == false ? 'text-red-400' : 'text-white'" (click)="downvote()">down</button>
+        </div>
+
+        <div class="col-span-9 bg-blue-300 flex flex-col justify-between p-2 rounded-xl">
+            {{post.message}}
+
+            <div class="flex flex-row justify-between">
+                <div class="text-white">last edited on {{post.edit_time}}</div>
+
+                <button *ngIf="post.username==user" (click)="modifyPostClick()">Edit Post</button>
+            </div>
+
+
+        </div>
+    </div>
+    <div class="grid grid-cols-10">
+        <div class="col-span-1"></div>
+        <div class="col-span-9 flex flex-col gap-2">
+            <app-comment-card (getPost)="getPost()" *ngFor="let comment of post.comments"
+                [comment]="comment"></app-comment-card>
+        </div>
+    </div>
+    <div class="flex justify-end p-5">
+        <button (click)="newCommentClick()"
+            class="bg-green-400 w-fit p-2 rounded-lg bg-opacity-60 hover:scale-110 cursor-pointer hover:shadow-md hover:shadow-green-700 transition duration-200 ease-in-out">New
+            Comment</button>
+    </div>
+
+
+
+</div>

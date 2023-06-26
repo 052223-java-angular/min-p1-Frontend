@@ -1,0 +1,44 @@
+<div class="grid grid-rows-5 h-screen w-screen gap-1 bg-black">
+    <div class="grid grid-cols-3 row-span-1 w-full gap-1">
+        <div class="bg-purple-300 col-span-1 flex flex-col gap-2 p-2">
+            <div class="text-2xl">{{user.username}}</div>
+            <div>{{user.email}}</div>
+
+            <div class="h-full py-5">
+                <div>signature:</div>
+                <div (click)="editSignature()" class="bg-purple-200 border-orange-200 border-2 h-full">
+                    {{user.signature}}</div>
+            </div>
+        </div>
+        <div class="grid grid-cols-2 grid-rows-2  col-span-2 w-full gap-1">
+            <div class="bg-red-300">
+                <div>Build Count</div>
+                <div class="flex justify-center items-center  h-full text-5xl">{{user.builds.length}}</div>
+            </div>
+            <div class="bg-green-300">
+                <div>Team Counts</div>
+                <div class="flex justify-center items-center  h-full text-5xl">{{user.teams.length}}</div>
+            </div>
+            <div class="bg-blue-300">
+                <div>Post Count</div>
+                <div class="flex justify-center items-center  h-full text-5xl">{{user.posts.length}}</div>
+            </div>
+            <div class="bg-yellow-300">
+                <div>Comment Count</div>
+                <div class="flex justify-center items-center  h-full text-5xl">{{user.comments.length}}</div>
+            </div>
+        </div>
+    </div>
+    <div class="bg-indigo-400 row-span-2 grid grid-cols-5 items-center gap-2">
+        <Button (click)="newBuild()"
+            class="text-9xl bg-indigo-600 p-2 rounded-lg bg-opacity-60 hover:scale-110 cursor-pointer hover:shadow-md hover:shadow-blue-700 transition duration-200 ease-in-out">+</Button>
+        <app-build-card (getBuilds)="getBuilds()" *ngFor="let build of builds" [builds]="build"></app-build-card>
+    </div>
+    <div class="bg-lime-300 row-span-2 grid grid-cols-5 items-center gap-2">
+        <Button (click)="newTeam()"
+            class="text-9xl bg-lime-600 p-2 rounded-lg bg-opacity-60 hover:scale-110 cursor-pointer hover:shadow-md hover:shadow-lime-700 transition duration-200 ease-in-out">+</Button>
+        <app-team-cards (getTeams)="getTeams()" *ngFor="let team of teams" [team]="team"
+            [builds]="builds"></app-team-cards>
+    </div>
+</div>
+<!--  -->

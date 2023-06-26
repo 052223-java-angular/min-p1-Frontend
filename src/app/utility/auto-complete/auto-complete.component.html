@@ -1,0 +1,12 @@
+<form>
+    <mat-form-field>
+        <input [(ngModel)]="nameMap  && selected ? nameMap[selected] : selected" class="text-4xl" type="text"
+            placeholder="Pick one" matInput [formControl]="myControl" [matAutocomplete]="auto">
+        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+            <mat-option (onSelectionChange)="onSelect(option)" *ngFor="let option of filteredOptions | async"
+                [value]="nameMap ? nameMap[option] : option">
+                {{nameMap ? nameMap[option] : option}}
+            </mat-option>
+        </mat-autocomplete>
+    </mat-form-field>
+</form>
