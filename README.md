@@ -2,7 +2,8 @@
 
 ## Introduction
 
-Pokémon app is an Angular and Spring Boot fullstack application. The application will be primarily be written using Java and TypeScript and will utilize a PostgreSQL database to store user information, dicussions and team recommendations.
+View Pokémons and their info. Build your own Pokémon and assemble a team. Share your builds and have discussions with fellow trainers.
+Pokémon app is an Angular and Spring Boot fullstack application. The application will be primarily be written using Java and TypeScript and will utilize a PostgreSQL database to store user information, dicussions and team recommendations. 
 
 ## User Stories
 
@@ -28,6 +29,59 @@ Pokémon app is an Angular and Spring Boot fullstack application. The applicatio
 
 - Implementing battle simulation
 - Implement other parts of PokéAPI
+
+
+## Feature
+- Registration
+    - Username:
+      - 8-20 alphanumeric characters or underscores or dots but not starting or ending with an underscore or dot or having consecutive underscores or dots. 
+      - must not be already in use.
+    - Password:
+      - at least 8 alphanumeric characters with at least one letter and one number.
+      - salted and hashed.
+- Login
+  - Must use correct combination of username and password.
+- Posts
+  - create post
+  - edit post
+  - vote post
+  - comments
+    - add comment
+    - edit comment
+    - vote comment
+- Profile
+  - overview of the user:
+    - comment counts
+    - post counts
+    - build counts
+    - team counts
+  - user signature
+- Builds
+    - Build from 1010 Pokémon:
+        - 4 moves
+        - 1 ability
+        - 1 nature
+    - Edit build
+    - Delete build
+- Teams
+  - Assemble a team:
+    - Up to 6 builds
+    - pick from your builds
+  - Edit team
+  - Delete team
+- Pokédex
+  - 1010 Pokémons
+  - Noramal sprite
+  - Shiny sprite
+  - click to view Pokémon info
+- Pokémon info
+  - names
+  - abilities
+  - moves
+  - pokédex numbers
+  - base stat
+  - evolution family
+  - forms
 
 ## Tech Stacks
 
